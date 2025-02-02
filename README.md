@@ -21,6 +21,15 @@ Features:
 - ✅ RSS Feed support
 - ✅ Markdown & MDX support
 
+## Influenced by
+
+- [Gridless Design](https://gridless.design/)
+- [Open Graph protocol](https://ogp.me/)
+- [Coolors](https://coolors.co/palettes/popular/desert)
+- [ColorFFy](https://colorffy.com/color-scheme-generator?color=FDF7EC)
+- [CSS IRL](https://css-irl.info/is-it-time-to-ditch-the-design-grid/)
+- [Hero Patterns](https://heropatterns.com/)
+
 ## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:

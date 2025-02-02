@@ -1,0 +1,21 @@
+---
+const { title } = Astro.props;
+import BaseHead from "@components/BaseHead.astro";
+import Header from "@components/Header.astro";
+import Navigation from "@components/Navigation.astro";
+import Footer from "@components/Footer.astro";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={title} />
+  </head>
+  <body class="stack">
+    <Header />
+    <Navigation />
+    <slot />
+    <button id="back-to-top">↑ Back to top</button>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,47 @@
+---
+---
+<nav>
+  <div class="logo">stories by tim eaton</div>
+  <ul>
+    <li><a href="/about">about</a></li>
+    <li><a href="/stories">archive</a></li>
+    <li><a href="/contact">email</a></li>
+  </ul>
+</nav>
+
+<style>
+  nav {
+    margin: 0;
+    margin-block-start: 0;
+    padding-left: var(--s-1);
+    padding-right: var(--s-1);
+  }
+
+  .logo {
+    font-style: italic;
+    float: left;
+    text-wrap: nowrap;
+    display: inline-block;
+  }
+
+  ul {
+    list-style: none;
+    display: inline-block;
+    float: right;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-accent);
+    color: inherit;
+  }
+
+  a:hover {
+    color: var(--color-accent);
+    opacity: 1;
+  }
+</style>
