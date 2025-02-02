@@ -1,0 +1,279 @@
+<html lang="en">
+    <style>
+                    *,
+                    :after,
+                    :before {
+                      box-sizing: border-box;
+                      background-color: inherit;
+                      font-family: inherit;
+                      color: inherit;
+                      overflow-wrap: break-word;
+                      margin: 0;
+                      padding: 0;
+                      border: 0 solid;
+                    }
+
+                    :root {
+                      --font-plain: iA Writer Quattro S, Helvetica Neue, Helvetica, Arial, sans-serif;
+                      --font-serif: Georgia, serif;
+                      --font-special: Bygonest Rustic, Futura, serif;
+                      --font-mono: Menlo, Courier, Courier New, Andale Mono, monospace;
+                      --color-dark: #302f2d;
+                      --color-darkish: #5e5c58;
+                      --color-lightish: #e6e6e6;
+                      --color-light: hsl(38, 82%, 96%);
+                      --color-mid: #808080;
+                      --color-accent: #FF451C;
+                      --ratio: 1.5;
+                      --s-5: clamp(0.33rem, 0.39rem + -0.29vw, 0.18rem);
+                      --s-4: clamp(0.41rem, 0.47rem + -0.31vw, 0.25rem);
+                      --s-3: clamp(0.51rem, 0.57rem + -0.31vw, 0.35rem);
+                      --s-2: clamp(0.64rem, 0.69rem + -0.27vw, 0.5rem);
+                      --s-1: clamp(0.8rem, 0.84rem + -0.18vw, 0.71rem);
+                      --s0: clamp(1rem, 1rem + 0vw, 1rem);
+                      --s1: clamp(1.25rem, 1.19rem + 0.32vw, 1.41rem);
+                      --s2: clamp(1.56rem, 1.39rem + 0.85vw, 2rem);
+                      --s3: clamp(1.95rem, 1.61rem + 1.7vw, 2.83rem);
+                      --s4: clamp(2.44rem, 1.83rem + 3.04vw, 4rem);
+                      --s5: clamp(3.05rem, 2.04rem + 5.07vw, 5.65rem);
+                      --measure: 65ch;
+                      --line-height: var(--ratio);
+                      --line-height-small: calc(0.8 * var(--ratio));
+                      --border-thin: var(--s-5);
+                      --border-thick: var(--s-2);
+                      line-height: var(--ratio);
+                      font-size: calc(0.333vw + 1em);
+                      font-family: var(--font-plain);
+                      background-color: var(--color-light);
+                      color: var(--color-darkish);
+                    }
+
+
+                    footer, header, article, nav {
+                      display: block;
+                    }
+
+                    footer,
+                    article > * {
+                      display: block;
+                      margin-left: auto;
+                      margin-right: auto;
+                      max-width: 35rem;
+                    }
+
+                    article {
+                      line-height: var(--line-height);
+                    }
+
+                    article > * + * {
+                      margin-block-start: var(--s2, 1.5rem);
+                    }
+
+                    .stack {
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: flex-start;
+                    }
+
+                    .stack > * {
+                      margin-block: 0;
+                    }
+
+                    .stack > * + * {
+                      margin-block-start: var(--s2, 1.5rem);
+                    }
+
+                    .stack-exception,
+                    .stack-exception + * {
+                      --space: 3rem;
+                    }
+
+                    .h1,
+                    h1 {
+                      font-size: var(--s4);
+                      font-family: var(--font-special);
+                    }
+
+                    h1>a {
+                      text-decoration: none;
+                      border: 0;
+                      color: inherit;
+                    }
+                    h1>a {
+                      text-decoration: none;
+                      color: inherit;
+                    }
+
+                    .h2,
+                    h2 {
+                      font-size: var(--s3);
+                    }
+
+                    .h3,
+                    h3 {
+                      font-size: var(--s2);
+                    }
+
+                    .h4,
+                    h4 {
+                      font-size: var(--s1);
+                    }
+
+                    h1,
+                    h2,
+                    h3,
+                    h4 {
+                      line-height: var(--line-height-small);
+                      
+                      font-weight: 700;
+                      color: var(--color-accent);
+                    }
+                    article {
+                      --max-width: 900px;
+                      --col-width: 60%;
+                      --threshold: calc(var(--max-width) - 100px);
+                      max-width: var(--max-width);
+                      margin: auto;
+                      padding: var(--s1) var(--s1) 4rem;
+
+                    }
+                    article>header {
+                      min-width: calc(100% - var(--col-width) - var(--s1));
+                      max-width: 100%;
+                      width: calc((var(--threshold) - 100%)* 1000);
+                      font-size: min(3rem, 8vw);
+                      font-family: var(--font-plain);
+                      text-transform: lowercase;
+                      color: var(--color-dark);
+                      text-align: end;
+                      float: left;
+                      border-right: 5px solid var(--color-accent);
+                      font-size: var(--s3);
+                      padding-right: var(--s1);
+                      padding-bottom: var(--s1);
+                      font-weight: 700;
+                    }
+
+                    article>header>span {
+                      font-size: var(--s-1);
+                      display: block;
+                      font-weight: 400;
+                      color: var(--color-darkish);
+                    }
+
+                    article>:not(header) {
+            margin: 0;
+            max-width: 100%;
+            min-width: var(--col-width);
+            width: calc((var(--threshold) - 100%)* 1000);
+            margin-left: auto;
+        }
+
+                    article p+p {
+                  margin-top: var(--s-1);
+              }
+                    .stack nav {
+                      margin:0;
+                      margin-block-start: 0;
+                      display: flex;
+                      justify-content: space-between;
+                      align-items: center;
+                      padding-left: var(--s-1);
+                      padding-right: var(--s-1);
+                    }
+
+                    body>header {
+                      width: 100%;
+                    }
+
+                    body>header>h1 {
+                      background-color: transparent;
+                      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ff451c' fill-opacity='0.22'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+                      display: block;
+                      width: 100%;
+                      margin: 0;
+                      padding-right: var(--s1);
+                    }
+
+                    div.logo {
+                      font-style: italic;
+                    }
+                    
+                    nav ul {
+                      list-style: none;
+                      display: flex;
+                      gap: 1.5rem;
+                      margin: 0;
+                      padding: 0;
+                    }
+                    
+                    nav a {
+                      text-decoration: none;
+                      border-bottom: 2px solid var(--color-accent);
+                      color: inherit;
+                    }
+
+                    a:hover {
+                      color: var(--color-accent);
+                      opacity: 1;
+                    }
+
+                    #back-to-top {
+                      position: fixed;
+                      bottom: 0;
+                      right:0; margin:1rem;
+                      padding: var(--s-1);transform: translateY(calc(100% + 1rem));
+                      opacity: 0;
+                      transition: .218s ease;
+                      z-index: 1;
+                      background: inherit;
+                      border: 1px solid var(--color-accent)
+                    }
+                    #back-to-top.visible {
+                     transform: translateY(0);
+                     opacity: 1
+                    }
+    </style>
+
+    <script>
+      let topButton=document.querySelector("#back-to-top"),pos=0;
+      window.addEventListener("scroll",()=> {
+        topButton.classList.toggle("visible", 400 < window.scrollY),pos=Math.max(window.scrollY,0)
+      })
+    </script>
+  </head>
+
+  <body class="stack">
+    <header><h1><a href="/">MOSTLY TRUE</a></h1></header>
+    <nav>
+      <div class="logo">stories by tim eaton</div>
+      <ul>
+        <li><a href="/about">about</a></li>
+        <li><a href="/stories">archive</a></li>
+        <li><a href="/contact">email</a></li>
+      </ul>
+    </nav>
+    <article>
+      <header>That Time I Took a Black Cab in Sichuan
+        <span><br/>02 February 2025</span>
+      </header>
+
+      <p>It was 2010, and we were somewhere in Western China trying to get to a small town on the Tibetan border. There was no bus, and no taxi would take us there. We had reservations for the night, so we started to get desperate to find a ride.</p>
+
+      <p>My friend Adrian spoke enough Mandarin to get us into trouble, and we finally found an unlicensed driver to take the three of us there for a reasonable price. I had never used a black cab before, but it sounded above board, and we wouldn’t pay until we arrived.</p>
+
+      <p>The ride was gorgeous - Western Sichuan is breathtaking - and it was just us Americans and a few orange-robed monks, chatting as best we could. The driver told us we could listen to our own music, so of course I put some Tom Waits on and gleefully sang along in my best gravel-voiced impression. This amused the monks to no end. They laughed and laughed before finally switching it to more traditional Tibetan music.</p>
+
+      <p>It was at this point things started to go wrong.</p>
+
+      <a id="back-to-top" href="#top">Back to top</a>
+      
+    </article>
+    <main>
+
+    </main>
+    <footer>
+      <p>Copyright 2025</p>
+    </footer>
+  </body>
+</html>

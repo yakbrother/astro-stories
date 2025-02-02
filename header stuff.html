@@ -1,0 +1,237 @@
+!doctype html>
+<html class="no-js" id="start" lang="en" dir="ltr">
+  <head>
+    <!-- order of head content ist optimized for page load performance with https://rviscomi.github.io/capo.js/ -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- treat the tag symbol, must be before setting the title -->
+
+    <!-- title and description -->
+    <title>Colophon</title>
+    <!-- head scripts -->
+    <!-- speculation rules for prerendering -->
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "where": {
+              "href_matches": "/*"
+            },
+            "eagerness": "moderate"
+          }
+        ]
+      }
+    </script>
+
+    <script>
+      addEventListener("keydown", (event) => {
+        let focus = document.querySelector(":focus");
+
+        if (
+          focus &&
+          "INPUT" == focus.tagName &&
+          "submit" != focus.type &&
+          "reset" != focus.type
+        ) {
+          return;
+        } else if (focus && "TEXTAREA" == focus.tagName) {
+          return;
+        }
+
+        if (
+          !(event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
+        ) {
+          if ("/search/" && event.key === "s") {
+            let queryField = document.querySelector("#search-query");
+            if (queryField && queryField != focus) {
+              event.preventDefault();
+              queryField.focus();
+              return;
+            } else if (!queryField) {
+              event.preventDefault();
+              location.href = "/search/";
+              return;
+            }
+          }
+
+          if ("nav-older" && event.key === "+") {
+            let navOlder = document.querySelector("#nav-older");
+            if (navOlder) {
+              event.preventDefault();
+              if (navOlder.href) {
+                location.href = navOlder.href;
+                return;
+              } else {
+                navOlder.click();
+                return;
+              }
+            }
+          }
+
+          if ("nav-newer" && event.key === "-") {
+            let navNewer = document.querySelector("#nav-newer");
+            if (navNewer) {
+              event.preventDefault();
+              if (navNewer.href) {
+                location.href = navNewer.href;
+                return;
+              } else {
+                navNewer.click();
+                return;
+              }
+            }
+          }
+
+          if ("start" && event.key === "t") {
+            event.preventDefault();
+            location.href = "#start";
+            return;
+          }
+
+          for (let nav of [
+            { label: "Ulf Schneider", url: "/", id: "home", kbd: "h" },
+            { label: "Blog", url: "/blog/", id: "blog", kbd: "b" },
+            {
+              label: "Search",
+              url: "/search/",
+              id: "search",
+              classList: "no-js-hidden",
+              kbd: "s",
+            },
+          ]) {
+            if (event.key == nav.kbd && nav.url) {
+              event.preventDefault();
+              if (nav.id == "edit-on-github") {
+                window.open(nav.url + "./content/pages/colophon.md", "_blank");
+              } else {
+                location.href = nav.url;
+              }
+              return;
+            }
+          }
+
+          for (let nav of [
+            { label: "Home", url: "/", id: "home" },
+            { label: "Blog", url: "/blog/", id: "blog", kbd: "b" },
+            { label: "About", url: "/about/", id: "about", kbd: "u" },
+            {
+              label: "Keyboard",
+              url: "/keyboard/",
+              id: "keyboard",
+              kbd: "k",
+              classList: "no-js-hidden",
+            },
+            { label: "Colophon", url: "/colophon/", id: "colophon", kbd: "c" },
+            {
+              label: "RSS",
+              url: "/feed.xml",
+              type: "application/atom+xml",
+              id: "rss",
+              kbd: "r",
+            },
+          ]) {
+            if (event.key == nav.kbd && nav.url) {
+              event.preventDefault();
+              if (nav.id == "edit-on-github") {
+                window.open(nav.url + "./content/pages/colophon.md", "_blank");
+              } else {
+                location.href = nav.url;
+              }
+              return;
+            }
+          }
+        }
+      });
+      addEventListener("load", () => {
+        sotable();
+      });
+    </script>
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="/css/main-v1-255.css" />
+    <!-- preload fonts -->
+    <link
+      rel="preload"
+      href="/fonts/iAWriterQuattroS-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/iAWriterQuattroS-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/iAWriterQuattroS-Italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/iAWriterMonoS-Italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <!-- head scripts deferred -->
+    <script defer src="/js/site-scripts-v1-42.js"></script>
+    <script defer src="/js/sotable-v1-42.js"></script>
+    <script defer src="/js/active-toc-v1-42.js"></script>
+    <script defer src="/js/autocomplete-v1-42.js"></script>
+
+    <!-- everything else -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-Control" content="no-store, max-age=0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#171717"
+    />
+    <meta name="msapplication-TileColor" content="#f7f7f7" />
+    <meta name="theme-color" content="#f7f7f7" />
+    <!-- minimalistic favicon setup, checkout https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- SEO/feed -->
+    <link rel="canonical" href="https://ulfschneider.io/colophon/" />
+    <link
+      rel="alternate"
+      href="https://ulfschneider.io/feed.xml"
+      title="Ulf Schneider – Developer and Agile Coach"
+      type="application/atom+xml"
+    />
+
+    <!-- Open Graph -->
+
+    <meta property="og:title" content="Colophon" />
+    <meta property="og:url" content="https://ulfschneider.io/colophon/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://ulfschneider.io/ulf-16x9.jpg" />
+
+    <!-- Email -->
+    <link rel="me" href="mailto:mail@ulfschneider.io" />
+    <!-- Mastodon -->
+    <link rel="me" href="https://fosstodon.org/@ulfschneider" />
+    <!-- GitHub -->
+    <link rel="me" href="https://github.com/ulfschneider" />
+    <!-- Webmentions -->
+    <link
+      rel="webmention"
+      href="https://webmention.io/ulfschneider.io/webmention"
+    />
+    <link rel="pingback" href="https://webmention.io/ulfschneider.io/xmlrpc" />
+  </head>
+  <body class="break-words px-ryt flow default" data-pagefind-body>
+    <header id="header"></header>
+  </body>
+</html>
