@@ -1,0 +1,39 @@
+---
+interface Props {
+    tag: string;
+    size?: 'sm' | 'md';
+}
+
+const { tag, size = 'md' } = Astro.props;
+---
+
+<a href={`/tags/${tag}/`} class:list={['tag', size]}>
+    {tag}
+</a>
+
+<style>
+    .tag {
+        display: inline-block;
+        text-decoration: none;
+        background-color: var(--gray-200);
+        color: var(--gray-700);
+        border-radius: 4px;
+        transition: all 0.2s ease;
+    }
+
+    .tag:hover {
+        background-color: var(--accent-light);
+        color: var(--accent);
+        transform: translateY(-1px);
+    }
+
+    .sm {
+        padding: 0.2rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .md {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.9rem;
+    }
+</style>

@@ -1,0 +1,54 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../profile';
+import { getCollection } from 'astro:content';
+import StoryCard from '../../components/StoryCard.astro';
+
+const posts = (await getCollection('stories')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<article>
+			<div class="stories-header">
+				<h1>All Stories</h1>
+				<p>Browse through all my stories, from newest to oldest.</p>
+			</div>
+
+			<section class="stories-grid">
+				{posts.map((post) => (
+					<StoryCard story={post} />
+				))}
+			</section>
+
+			<style>
+				.stories-header {
+					text-align: center;
+					margin: 2rem 0 4rem;
+				}
+				.stories-header h1 {
+					margin-bottom: 1rem;
+				}
+				.stories-header p {
+					color: var(--gray-600);
+				}
+				.stories-grid {
+					display: grid;
+					gap: 2rem;
+					grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
+					margin-bottom: 4rem;
+				}
+			</style>
+		</article>
+		<Footer />
+	</body>
+</html>

@@ -4,13 +4,14 @@ import BaseLayout from '../components/BaseHead.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import { AUTHOR } from '../profile';
 
-type Props = CollectionEntry<'story'>['data'];
+type Props = CollectionEntry<'stories'>['data'];
 
 const { title, description, pubDate, updatedDate, ogImage } = Astro.props;
 ---
 
-	</head>
-
+<BaseLayout title={title} description={description} image={ogImage}>
+<article>
+<h2>{title}</h2>
 						<div class="date">
 							<FormattedDate date={pubDate} />
 							{
@@ -21,3 +22,6 @@ const { title, description, pubDate, updatedDate, ogImage } = Astro.props;
 								)
 							}
 						</div>
+						<slot />
+</article>
+</BaseLayout>
