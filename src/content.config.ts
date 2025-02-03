@@ -13,6 +13,7 @@ const story = defineCollection({
     updatedDate: z.coerce.date().optional(),
     ogImage: z.string().optional(),
     tags: z.array(z.string()),
+    featured: z.boolean().default(false),
   }),
 });
 
