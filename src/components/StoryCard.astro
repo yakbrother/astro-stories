@@ -5,73 +5,113 @@ import Tag from './Tag.astro';
 
 interface Props {
     story: CollectionEntry<'stories'>;
-    featured?: boolean;
 }
 
-const { story, featured = false } = Astro.props;
+const { story } = Astro.props;
 const { title, description, pubDate, tags } = story.data;
 ---
 
-<storycard class:list={['story-card', { featured }]}>
-    <a href={`/stories/${story.id}/`} class="story-link">
-        <h3>{title}</h3>
-        <p>{description}</p>
-    </a>
-    <div class="metadata">
+
+<!-- <a href={`/stories/${story.id}/`} class="story-card">
+    <card>
         <FormattedDate date={pubDate} />
-        <span class="tags">
-            {tags.map((tag) => (
-                <Tag tag={tag} size="sm" />
-            ))}
-        </span>
+        <h4>{title}</h4>
+        <span class="description">{description}</span>
+    </card>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+    </svg>
+</a> -->
+
+<a class="story-card" href={`/stories/${story.id}/`}>
+    <div class="grow">
+        <h4>
+            {title}
+        </h4>
+        
+        <FormattedDate date={pubDate} />
+        
+        {description && <div class="description">{description}</div>}
     </div>
-</storycard>
+</a>
 
 <style>
-    .story-card {
-        border-radius: 8px;
-        background-color: var(--gray-50);
-        transition: all 0.2s ease;
-        border: 1px solid transparent;
-    }
+a.story-card {
+    display: flex; 
+    gap: var(--s2); 
+    justify-content: space-between; 
+    align-items: flex-start; 
+    margin-block-end: var(--s2);
+    text-decoration: none;
+    padding: var(--s-1);
+    border-radius: var(--s-4);
+}
 
-    .story-card:hover {
-        background-color: var(--gray-100);
-        transform: translateY(-2px);
-        border-color: var(--gray-200);
-    }
+a.description, a.time {
+    text-decoration: none;
+    border: 0;
+}
 
-    .story-link {
-        display: block;
-        text-decoration: none;
-        color: inherit;
-    }
+.story-card:hover h4 {
+    color: var(--color-accent);
+}
 
-    .story-card h3 {
-        margin: 0;
-        margin-bottom: 0.5rem;
-        font-size: 1.5rem;
-        color: var(--gray-900);
-    }
+.story-card .arrow {
+    display: none;
+    color: var(--color-text);
+    font-style: italic; 
+    transition-duration: 300ms; 
+    opacity: 0; 
+}
 
-    .story-card p {
-        margin: 0;
-        margin-bottom: 1rem;
-        color: var(--gray-700);
-        line-height: 1.5;
-    }
+.story-card:hover .arrow {
+    opacity: 1; 
+    display: inline-block;
 
-    .metadata {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        font-size: 0.9rem;
-        color: var(--gray-600);
-    }
+}
 
-    .tags {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-    }
+.story-card:hover {
+    display: flex;
+    align-items: center;
+    gap: var(--s1);
+    color: var(--color-text);
+    background-color: var(--color-background-muted);
+    border: 1px solid var(--color-accent);
+}
+
+.story-card :global(time),
+.story-card .description {
+    text-decoration: none;
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: var(--s-1);
+}
+
+.story-card svg {
+    position: absolute; 
+    right: 0.75rem; 
+    top: 50%; 
+    transform: translateY(-50%);
+    color: var(--color-text-muted); 
+    transition: transform 0.3s ease;
+}
+
+
+.story-card card {
+    display: flex; 
+    flex-direction: column; 
+    flex: 1 1 0%; 
+    overflow: hidden;
+    gap: 0.25rem;
+}
+
+.story-card :global(time) {
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: var(--s-1);
+}
+
+.story-card .description {
+    text-style: normal;
+}
 </style>

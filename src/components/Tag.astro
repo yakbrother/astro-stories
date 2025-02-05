@@ -15,25 +15,23 @@ const { tag, size = 'md' } = Astro.props;
     .tag {
         display: inline-block;
         text-decoration: none;
-        background-color: var(--gray-200);
-        color: var(--gray-700);
+        background-color: var(--color-background-muted);
         border-radius: 4px;
         transition: all 0.2s ease;
     }
 
     .tag:hover {
-        background-color: var(--accent-light);
-        color: var(--accent);
-        transform: translateY(-1px);
+        background: var(--color-accent);
+        color: var(--color-text);
     }
 
     .sm {
         padding: 0.2rem 0.5rem;
-        font-size: 0.8rem;
+        font-size: var(--s-2);
     }
 
     .md {
         padding: 0.3rem 0.8rem;
-        font-size: 0.9rem;
+        font-size: var(--s-1);
     }
 </style>

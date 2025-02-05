@@ -5,52 +5,33 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import StoryCard from '@components/StoryCard.astro';
 
 const allStories = await getCollection('stories');
-const featuredStories = allStories
-	.filter(story => story.data.featured)
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
 const recentStories = allStories
-	.filter(story => !story.data.featured)
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 6);
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<main class"stack">
 	<div class="hero">
 		<p>Welcome to my stories! These are personal accounts I write for fun. Let's call them based on a mostly true story. Enjoy!</p>
 	</div>
 
-	<article>
+	<hr />
+	
+	{recentStories.map((story) => (
+		<StoryCard story={story} />
+	))}
+	<div class="archive-link">
+		<a href="/stories">View All Stories →</a>
+	</div>
 
-	{featuredStories.length > 0 && (
-		<section class="featured-stories">
-			<h2>Featured Stories</h2>
-			<div class="featured">
-				{featuredStories.map((story) => (
-					<StoryCard story={story} featured={true} />
-				))}
-			</div>
-		</section>
-	)}
-
-	<section class="recent-stories">
-		<h2>Recent Stories</h2>
-		<div>
-			{recentStories.map((story) => (
-				<StoryCard story={story} />
-			))}
-		</div>
-		<div class="archive-link">
-			<a href="/stories">View All Stories →</a>
-		</div>
-	</section>
-
-</article>
-
+</main>	
 	<style>
 		.hero {
-			padding: 0 4em;
+			padding: var(--s1);
 			font-size: var(--s1);
+			margin: auto;
+			max-width: 900px;
 		}
 		
 		.archive-link {
@@ -63,8 +44,13 @@ const recentStories = allStories
 			text-decoration: none;
 			color: inherit;
 			border: 1px solid var(--color-accent);
-			border-radius: 4px;
+			border-radius: 0.05em;
 			transition: all 0.2s;
+		}
+
+		.archive-link a:hover {
+			background: var(--color-accent);
+			color: var(--color-text);
 		}
 	</style>
 </BaseLayout>

@@ -19,10 +19,10 @@ const posts = (await getCollection('stories')).sort(
 	<body>
 		<Header />
 		<article>
-			<div class="stories-header">
-				<h1>All Stories</h1>
+			<header>
+				<h2>All Stories</h2>
 				<p>Browse through all my stories, from newest to oldest.</p>
-			</div>
+			</header>
 
 			<section class="stories-grid">
 				{posts.map((post) => (
@@ -31,16 +31,6 @@ const posts = (await getCollection('stories')).sort(
 			</section>
 
 			<style>
-				.stories-header {
-					text-align: center;
-					margin: 2rem 0 4rem;
-				}
-				.stories-header h1 {
-					margin-bottom: 1rem;
-				}
-				.stories-header p {
-					color: var(--gray-600);
-				}
 				.stories-grid {
 					display: grid;
 					gap: 2rem;
