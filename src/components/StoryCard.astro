@@ -47,21 +47,14 @@ a.story-card {
     border-radius: var(--s-4);
 }
 
-a.description, a.time {
+a :global(time) {
     text-decoration: none;
-    border: 0;
+    color: var(--color-text-muted);
+    font-size: var(--s-1);
 }
 
 .story-card:hover h4 {
     color: var(--color-accent);
-}
-
-.story-card .arrow {
-    display: none;
-    color: var(--color-text);
-    font-style: italic; 
-    transition-duration: 300ms; 
-    opacity: 0; 
 }
 
 .story-card:hover .arrow {
@@ -79,7 +72,12 @@ a.description, a.time {
     border: 1px solid var(--color-accent);
 }
 
-.story-card :global(time),
+.story-card:hover :global(time),
+.story-card:hover .description {
+    color: var(--color-text);
+}
+
+
 .story-card .description {
     text-decoration: none;
     color: var(--color-text-muted);
@@ -105,13 +103,4 @@ a.description, a.time {
     gap: 0.25rem;
 }
 
-.story-card :global(time) {
-    color: var(--color-text-muted);
-    font-style: italic;
-    font-size: var(--s-1);
-}
-
-.story-card .description {
-    text-style: normal;
-}
 </style>

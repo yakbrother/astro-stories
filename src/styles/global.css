@@ -17,11 +17,12 @@
   --font-special: Bygonest Rustic, Futura, serif;
   --font-mono: Menlo, Courier, Courier New, Andale Mono, monospace;
   --color-background: #fdf7ec;
-  --color-background-muted: #e6e6e6;
+  --color-background-muted: #c5c0b8;
   --color-text-muted: #5e5c58;
   --color-text: #302f2d;
   --color-mid: #808080;
   --color-accent: #ff451c;
+  --color-footer: #612313;
   --ratio: 1.5;
   --s-5: clamp(0.33rem, 0.39rem + -0.29vw, 0.18rem);
   --s-4: clamp(0.41rem, 0.47rem + -0.31vw, 0.25rem);
@@ -52,7 +53,8 @@
     --color-background: #302f2d;
     --color-background-muted: #5e5c58;
     --color-text: #fdf7ec;
-    --color-text-muted: #e6e6e6;
+    --color-text-muted: #c5c0b8;
+    --color-footer: #33170c;
   }
 }
 
@@ -63,12 +65,16 @@ nav {
   display: block;
 }
 
-footer,
+footer > *,
 article > * {
   display: block;
   margin-left: auto;
   margin-right: auto;
   max-width: 35rem;
+}
+
+footer {
+  margin-bottom: 0;
 }
 
 article {
@@ -161,6 +167,7 @@ section > h2 {
 }
 
 article > header > span {
+  padding-top: var(--s1);
   font-size: var(--s-1);
   display: block;
   font-weight: 400;
@@ -176,9 +183,11 @@ section > :not(h2) {
   margin-left: auto;
 }
 
-article p + p {
-  margin-top: var(--s-1);
+article > p + p {
+  margin-bottom: var(--s-1);
+  font-size: var(--s-1);
 }
+
 .stack nav {
   margin: 0;
   margin-block-start: 0;
@@ -273,7 +282,7 @@ blockquote {
   border-left: 4px solid var(--color-accent);
   padding: 0 0 0 20px;
   margin: 0px;
-  font-size: 1.333em;
+  font-size: var(--s0);
 }
 hr {
   border: none;

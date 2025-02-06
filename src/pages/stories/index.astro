@@ -1,44 +1,52 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../profile';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import StoryCard from '@components/StoryCard.astro';
+import Pagination from '@components/Pagination.astro';
 import { getCollection } from 'astro:content';
-import StoryCard from '../../components/StoryCard.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../profile';
 
-const posts = (await getCollection('stories')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+// Get the current page from the URL parameter
+const currentPage = parseInt(Astro.params.page || '1');
+const postsPerPage = 10;
+
+// Get all posts sorted by date
+const posts = (await getCollection('stories'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Calculate total pages
+const totalPages = Math.ceil(posts.length / postsPerPage);
+
+// Get posts for current page
+const startIndex = (currentPage - 1) * postsPerPage;
+const endIndex = startIndex + postsPerPage;
+const currentPosts = posts.slice(startIndex, endIndex);
+
+// Redirect if page is out of bounds
+if (currentPage < 1 || currentPage > totalPages) {
+	return Astro.redirect('/404');
+}
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<article>
-			<header>
-				<h2>All Stories</h2>
-				<p>Browse through all my stories, from newest to oldest.</p>
-			</header>
+<BaseLayout title={SITE_TITLE}>
+	<article>
+		<header>
+			<h2>All Stories</h2>
+			<span>Browse through all my stories, from newest to oldest.</span>
+		</header>
 
-			<section class="stories-grid">
-				{posts.map((post) => (
-					<StoryCard story={post} />
-				))}
-			</section>
+		
+		{currentPosts.map((post) => (
+			<StoryCard story={post} />
+		))}
+		
 
-			<style>
-				.stories-grid {
-					display: grid;
-					gap: 2rem;
-					grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
-					margin-bottom: 4rem;
-				}
-			</style>
-		</article>
-		<Footer />
-	</body>
-</html>
+		<Pagination
+			currentPage={currentPage}
+			totalPages={totalPages}
+			baseUrl="/stories/page/"
+		/>
+	</article>
+	<style>
+
+	</style>
+</BaseLayout>

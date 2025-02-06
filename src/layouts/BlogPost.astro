@@ -12,7 +12,7 @@ const { title, description, pubDate, updatedDate, ogImage } = Astro.props;
 <BaseLayout title={title} description={description} image={ogImage}>
 <article>
 <h2>{title}</h2>
-						<div class="date">
+						<span>
 							<FormattedDate date={pubDate} />
 							{
 								updatedDate && (
@@ -21,7 +21,7 @@ const { title, description, pubDate, updatedDate, ogImage } = Astro.props;
 									</div>
 								)
 							}
-						</div>
+						</span>
 						<slot />
 </article>
 </BaseLayout>

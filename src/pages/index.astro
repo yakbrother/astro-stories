@@ -3,43 +3,56 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../profile';
 import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import StoryCard from '@components/StoryCard.astro';
+import TagList from '@components/TagList.astro';
 
 const allStories = await getCollection('stories');
 const recentStories = allStories
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, 6);
+
+// Get all unique tags with their counts
+const tagCounts = allStories.reduce((acc, story) => {
+	story.data.tags?.forEach(tag => {
+		acc[tag] = (acc[tag] || 0) + 1;
+	});
+	return acc;
+}, {} as Record<string, number>);
+
+// Sort tags by count (descending) and then alphabetically
+const sortedTags = Object.entries(tagCounts)
+	.sort(([tagA, countA], [tagB, countB]) => 
+		countB - countA || tagA.localeCompare(tagB)
+	);
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-	<main class"stack">
-	<div class="hero">
-		<p>Welcome to my stories! These are personal accounts I write for fun. Let's call them based on a mostly true story. Enjoy!</p>
-	</div>
+	<main class="stack">
+		
+		<section class="stories-section">
+			<h2>Recent Stories</h2>
+			<div class="stories-grid">
+				{recentStories.map((story) => (
+					<StoryCard story={story} />
+				))}
+			</div>
+		</section>
 
-	<hr />
-	
-	{recentStories.map((story) => (
-		<StoryCard story={story} />
-	))}
-	<div class="archive-link">
-		<a href="/stories">View All Stories →</a>
-	</div>
+		<div class="archive-link">
+			<a href="/stories">View All Stories →</a>
+		</div>
 
-</main>	
+		<TagList stories={allStories} />
+	</main>	
+
 	<style>
-		.hero {
-			padding: var(--s1);
-			font-size: var(--s1);
-			margin: auto;
-			max-width: 900px;
+		div.archive-link {
+			max-width: var(--min-width);
+			margin: var(--s2) auto;
+			padding: 0 var(--s1);
+			text-align: right;
 		}
 		
-		.archive-link {
-			text-align: center;
-			margin-top: var(--s3);
-		}
 		.archive-link a {
-			display: inline-block;
 			padding: 0.5rem 1rem;
 			text-decoration: none;
 			color: inherit;
