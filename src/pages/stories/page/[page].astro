@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import StoryCard from '@components/StoryCard.astro';
 import Pagination from '@components/Pagination.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
 
 export async function getStaticPaths() {
     const postsPerPage = 10;
@@ -30,7 +31,9 @@ export async function getStaticPaths() {
 const { posts, currentPage, totalPages } = Astro.props;
 ---
 
-<BaseLayout title={`Stories - Page ${currentPage}`}>
+<BaseLayout title={`Stories - Page ${currentPage}`} breadcrumbs={[
+        { text: 'Stories', href: '/stories' }
+    ]}>
     <article>
         <header>
             <h2>All Stories</h2>

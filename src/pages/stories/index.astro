@@ -27,7 +27,9 @@ if (currentPage < 1 || currentPage > totalPages) {
 }
 ---
 
-<BaseLayout title={SITE_TITLE}>
+<BaseLayout title={SITE_TITLE} breadcrumbs={[
+        { text: 'Stories' }
+    ]}>
 	<article>
 		<header>
 			<h2>All Stories</h2>

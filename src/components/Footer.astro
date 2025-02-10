@@ -3,7 +3,7 @@ const today = new Date();
 import { TITLE } from '../profile';
 ---
 
-<div>
+<footer>
     <div class="links">
         <a href="#" target="_blank" rel="noopener noreferer">
             email
@@ -17,41 +17,35 @@ import { TITLE } from '../profile';
             bluesky
 		</a>
     </div>
-	<p>
-		&copy; {new Date().getFullYear()}&nbsp;<a href="/">{TITLE}</a>. All rights reserved. Design by <a href="https://github.com/yakbrother">yakbrother</a>.
-	</p>
-</div>
+	<div class="copyright">
+		&copy;{new Date().getFullYear()}. All rights reserved. Design by <a href="https://github.com/yakbrother">yakbrother</a>.
+	</div>
+</footer>
 
 <style>
 	footer {
 		background: var(--color-footer);
 		padding: var(--s2);
 		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--s1);
 		text-align: center;
-		font-size: var(--s-2);
+		font-size: var(--s-1);
 	}
 
 	footer > div {
-		display: flex;
-		width: var(--col-width);
+		width: 100%;
 		margin: auto;
-		padding-top: 1.5rem; 
-		flex-direction: column; 
-		gap: 1rem; 
-		border-top-width: 1px; 
-		border-style: dashed; 
 	}
 
-	footer .links {
-		display: flex; 
-		flex-wrap: wrap; 
-		column-gap: 1rem; 
-		row-gap: 0.25rem; 
+	.links {
+		display: flex;
+		gap: var(--s-1);
+		justify-content: center;
+		font-size: var(--s0);
 	}
-
-	footer .links a {
-		display: inline-flex; 
-		justify-content: center; 
-		align-items: center;
+	.copyright {
+		text-style: italic;
 	}
 </style>

@@ -1,21 +1,33 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
+import BaseLayout from './BaseLayout.astro';
 
-const { title, description } = Astro.props;
+interface Props {
+	title: string;
+	subtitle?: string;
+	description?: string;
+	breadcrumbs?: Array<{
+		text: string;
+		href?: string;
+	}>;
+}
+
+const { title, subtitle, description, breadcrumbs = [] } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
-<article>
-	<header>
-		<h2>{title}</h2>
-	</header>
-	<main class="stack">
-		<slot />
-	</main>
-</article>
-<style>
-	main.stack {
-		padding-top: 0;
-	}
-</style>
+<BaseLayout title={title} breadcrumbs={breadcrumbs}>	
+	<article>
+		<header>
+			<h2>{title}</h2>
+			{subtitle && (<span>{subtitle}</span>)}
+		</header>
+		
+		<main class="stack">
+			<slot />
+		</main>
+	</article>
+	<style>
+		main.stack {
+			padding-top: 0;
+		}
+	</style>
 </BaseLayout>

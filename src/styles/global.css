@@ -17,12 +17,12 @@
   --font-special: Bygonest Rustic, Futura, serif;
   --font-mono: Menlo, Courier, Courier New, Andale Mono, monospace;
   --color-background: #fdf7ec;
-  --color-background-muted: #c5c0b8;
+  --color-background-muted: #eae5dc;
   --color-text-muted: #5e5c58;
   --color-text: #302f2d;
   --color-mid: #808080;
   --color-accent: #ff451c;
-  --color-footer: #612313;
+  --color-footer: #ff9c32;
   --ratio: 1.5;
   --s-5: clamp(0.33rem, 0.39rem + -0.29vw, 0.18rem);
   --s-4: clamp(0.41rem, 0.47rem + -0.31vw, 0.25rem);
@@ -36,6 +36,9 @@
   --s4: clamp(2.44rem, 1.83rem + 3.04vw, 4rem);
   --s5: clamp(3.05rem, 2.04rem + 5.07vw, 5.65rem);
   --measure: 65ch;
+  --max-width: 1000px;
+  --col-width: 60%;
+  --threshold: calc(var(--max-width) - 100px);
   --line-height: var(--ratio);
   --line-height-small: calc(0.8 * var(--ratio));
   --border-thin: var(--s-5);
@@ -54,7 +57,7 @@
     --color-background-muted: #5e5c58;
     --color-text: #fdf7ec;
     --color-text-muted: #c5c0b8;
-    --color-footer: #33170c;
+    --color-footer: #882e10;
   }
 }
 
@@ -70,7 +73,6 @@ article > * {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-width: 35rem;
 }
 
 footer {
@@ -142,12 +144,9 @@ h4 {
 
 article,
 main {
-  --max-width: 900px;
-  --col-width: 60%;
-  --threshold: calc(var(--max-width) - 100px);
   max-width: var(--max-width);
   margin: auto;
-  padding: var(--s1) var(--s1) 4rem;
+  padding: 0 var(--s1) 4rem;
 }
 article > header,
 section > h2 {
@@ -164,6 +163,7 @@ section > h2 {
   padding-right: var(--s1);
   padding-bottom: var(--s1);
   font-weight: 700;
+  hyphens: auto;
 }
 
 article > header > span {
@@ -174,7 +174,7 @@ article > header > span {
   color: var(--color-text-muted);
 }
 
-article > :not(header, section, .hero),
+article > :not(header, section, nav, footer, .hero),
 section > :not(h2) {
   margin: 0;
   max-width: 100%;
@@ -186,6 +186,12 @@ section > :not(h2) {
 article > p + p {
   margin-bottom: var(--s-1);
   font-size: var(--s-1);
+}
+
+section.post-nav-section > nav {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 0 var(--s1);
 }
 
 .stack nav {
@@ -277,6 +283,11 @@ pre {
 }
 pre > code {
   all: unset;
+}
+ul,
+ol {
+  padding-left: var(--s2);
+  margin: 0;
 }
 blockquote {
   border-left: 4px solid var(--color-accent);

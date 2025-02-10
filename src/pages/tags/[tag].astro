@@ -1,8 +1,7 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
+import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
 import StoryCard from '@components/StoryCard.astro';
-import Tag from '@components/Tag.astro';
 
 export async function getStaticPaths() {
     const stories = await getCollection('stories');
@@ -19,72 +18,28 @@ export async function getStaticPaths() {
 }
 
 const { tag } = Astro.params;
-const { stories } = Astro.props;
+const { stories: taggedStories } = Astro.props;
+const storyCount = `${taggedStories.length} ${taggedStories.length === 1 ? 'story' : 'stories'}`;
 
-// Get other tags that appear alongside this tag
-const relatedTags = [...new Set(
-    stories.flatMap(story => 
-        story.data.tags.filter(t => t !== tag)
-    )
-)].sort();
 ---
 
-<BaseLayout title={`Stories tagged "${tag}"`}>
-    <div class="tag-header">
-        <h1>
-            <Tag tag={tag} size="md" />
-            <span class="count">{stories.length} {stories.length === 1 ? 'story' : 'stories'}</span>
-        </h1>
 
-        {relatedTags.length > 0 && (
-            <div class="related-tags">
-                <p>Related tags:</p>
-                <div class="tags">
-                    {relatedTags.map(relatedTag => (
-                        <Tag tag={relatedTag} size="sm" />
-                    ))}
-                </div>
-            </div>
-        )}
-    </div>
-
+<PageLayout 
+    title={`Stories tagged "${tag}"`} 
+    subtitle={`${storyCount}`}
+    breadcrumbs={[
+        { text: 'Tags', href: '/tags' },
+        { text: tag }
+    ]}>
     <section class="stories-grid">
-        {stories.map(story => (
+        {taggedStories.map(story => (
             <StoryCard story={story} />
         ))}
     </section>
-</BaseLayout>
+</PageLayout>
 
 <style>
-    .tag-header {
-        margin: 2rem 0 4rem;
-    }
-    .tag-header h1 {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 2rem;
-    }
-    .count {
-        color: var(--gray-600);
-        font-size: 1.1rem;
-        font-weight: normal;
-    }
-    .related-tags {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        color: var(--gray-600);
-    }
-    .related-tags p {
-        margin: 0;
-        font-size: 0.9rem;
-    }
-    .tags {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-    }
+
     .stories-grid {
         display: grid;
         gap: 2rem;

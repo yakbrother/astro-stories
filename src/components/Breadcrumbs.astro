@@ -1,0 +1,67 @@
+---
+interface Props {
+    segments: Array<{
+        text: string;
+        href?: string;
+    }>;
+}
+
+const { segments } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="breadcrumbs">
+    <ol>
+        <li>
+            <a href="/">Home</a>
+        </li>
+        {segments.map((segment, index) => (
+            <li>
+                {segment.href ? (
+                    <a href={segment.href}>{segment.text}</a>
+                ) : (
+                    <span aria-current="page">{segment.text}</span>
+                )}
+            </li>
+        ))}
+    </ol>
+</nav>
+
+<style>
+    .breadcrumbs {
+        margin-bottom: var(--s1);
+    }
+    
+    .breadcrumbs ol {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .breadcrumbs li {
+        display: flex;
+        align-items: center;
+    }
+
+    .breadcrumbs li:not(:last-child)::after {
+        content: "/";
+        margin-left: 0.5rem;
+        color: var(--color-text-muted);
+    }
+
+    .breadcrumbs a {
+        color: var(--color-text-muted);
+        text-decoration: none;
+    }
+
+    .breadcrumbs a:hover {
+        color: var(--color-accent);
+        text-decoration: underline;
+    }
+
+    .breadcrumbs [aria-current="page"] {
+        color: var(--color-text);
+        font-weight: 500;
+    }
+</style>
