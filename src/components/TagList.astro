@@ -41,11 +41,13 @@ const sortedTags = Object.entries(tagCounts)
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
         gap: var(--s0);
+        
     }
 
     .tag-link {
         display: flex;
         justify-content: space-between;
+        text-transform: lowercase;
         align-items: center;
         padding: var(--s-1) var(--s0);
         text-decoration: none;

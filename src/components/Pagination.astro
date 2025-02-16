@@ -10,7 +10,7 @@ const { currentPage, totalPages, baseUrl } = Astro.props;
 const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 const showEllipsis = totalPages > 7;
 
-let displayedPages = pages;
+let displayedPages: (number | string)[] = pages;
 if (showEllipsis) {
     if (currentPage <= 4) {
         displayedPages = [...pages.slice(0, 5), '...', totalPages];

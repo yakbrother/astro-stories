@@ -7,8 +7,10 @@ interface Props {
 }
 
 const { segments } = Astro.props;
+const truncate = (input: string) => input.length > 35 ? `${input.substring(0, 5)}...` : input;
 ---
 
+{segments && segments.length > 0 && (
 <nav aria-label="Breadcrumb" class="breadcrumbs">
     <ol>
         <li>
@@ -19,16 +21,31 @@ const { segments } = Astro.props;
                 {segment.href ? (
                     <a href={segment.href}>{segment.text}</a>
                 ) : (
-                    <span aria-current="page">{segment.text}</span>
+                    <span aria-current="page">
+                        {truncate(segment.text)}
+                    </span>
                 )}
             </li>
         ))}
     </ol>
 </nav>
+)}
 
 <style>
     .breadcrumbs {
+        background: var(--color-background-muted);
+        padding-bottom: var(--s-0);
+        padding-top: var(--s-0);
+        padding-right: var(--s-1);
+        padding-left: var(--s-1);
+        font-size: var(--s--1);
+        border-radius: 1em;
+        text-transform: lowercase;
+        margin: auto;
         margin-bottom: var(--s1);
+        word-wrap: nowrap;
+        width: 100%;
+        max-width: var(--max-width);
     }
     
     .breadcrumbs ol {

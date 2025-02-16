@@ -77,6 +77,7 @@ article > * {
 
 footer {
   margin-bottom: 0;
+  width: 100%;
 }
 
 article {
@@ -145,11 +146,33 @@ h4 {
 article,
 main {
   max-width: var(--max-width);
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(250px, 1fr);
+  grid-column-gap: var(--s1);
+
   margin: auto;
-  padding: 0 var(--s1) 4rem;
+  padding: 0 var(--s1) var(--s1) 0;
 }
 article > header,
 section > h2 {
+  min-width: 250px;
+  max-width: 100%;
+  width: 250px;
+  font-family: var(--font-plain);
+  text-transform: lowercase;
+  color: var(--color-text);
+  text-align: end;
+  float: left;
+  border-right: 5px solid var(--color-accent);
+  font-size: var(--s3);
+  padding-right: var(--s1);
+  padding-bottom: var(--s1);
+  font-weight: 700;
+  hyphens: auto;
+}
+article2 > header,
+section2 > h2 {
   min-width: calc(100% - var(--col-width) - var(--s2));
   max-width: 100%;
   width: calc((var(--threshold) - 100%) * 1000);
@@ -177,7 +200,7 @@ article > header > span {
 article > :not(header, section, nav, footer, .hero),
 section > :not(h2) {
   margin: 0;
-  max-width: 100%;
+  width: 100%;
   min-width: var(--col-width);
   width: calc((var(--threshold) - 100%) * 1000);
   margin-left: auto;
@@ -197,8 +220,8 @@ section.post-nav-section > nav {
 .stack nav {
   margin: 0;
   margin-block-start: 0;
-  padding-left: var(--s-1);
-  padding-right: var(--s-1);
+  padding-left: 0;
+  padding-right: 0;
 }
 
 body > header {
@@ -215,7 +238,6 @@ body > header > h1 {
 }
 
 div.sublogo {
-  font-style: italic;
   float: left;
   text-wrap: nowrap;
 }

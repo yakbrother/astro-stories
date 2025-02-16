@@ -16,9 +16,9 @@ import Footer from "@components/Footer.astro";
     <section class="breadcrumbs-section">
         <Breadcrumbs segments={breadcrumbs} />
     </section>
-    
-      <slot />
-    
+      <main class="stack">
+        <slot />
+      </main>
     <a class="button" href="#" id="back-to-top">↑ Back to top</a>
     <Footer />
   </body>
