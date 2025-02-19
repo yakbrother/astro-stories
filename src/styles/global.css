@@ -35,9 +35,8 @@
   --s3: clamp(1.95rem, 1.61rem + 1.7vw, 2.83rem);
   --s4: clamp(2.44rem, 1.83rem + 3.04vw, 4rem);
   --s5: clamp(3.05rem, 2.04rem + 5.07vw, 5.65rem);
-  --measure: 65ch;
   --max-width: 1000px;
-  --col-width: 60%;
+  --col-width: 65em;
   --threshold: calc(var(--max-width) - 100px);
   --line-height: var(--ratio);
   --line-height-small: calc(0.8 * var(--ratio));
@@ -148,14 +147,13 @@ main {
   max-width: var(--max-width);
   width: 100%;
   display: grid;
-  grid-template-rows: repeat(250px, 1fr);
+  grid-template-rows: repeat(250px, 2fr);
   grid-column-gap: var(--s1);
 
   margin: auto;
   padding: 0 var(--s1) var(--s1) 0;
 }
-article > header,
-section > h2 {
+div.aside {
   min-width: 250px;
   max-width: 100%;
   width: 250px;
@@ -189,7 +187,7 @@ section2 > h2 {
   hyphens: auto;
 }
 
-article > header > span {
+sidebar > header > span {
   padding-top: var(--s1);
   font-size: var(--s-1);
   display: block;
@@ -197,13 +195,10 @@ article > header > span {
   color: var(--color-text-muted);
 }
 
-article > :not(header, section, nav, footer, .hero),
-section > :not(h2) {
+article > :not(header) {
   margin: 0;
   width: 100%;
-  min-width: var(--col-width);
-  width: calc((var(--threshold) - 100%) * 1000);
-  margin-left: auto;
+  max-width: var(--col-width);
 }
 
 article > p + p {

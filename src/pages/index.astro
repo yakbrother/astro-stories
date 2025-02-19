@@ -41,7 +41,12 @@ const sortedTags = Object.entries(tagCounts)
 			<a href="/stories">View All Stories →</a>
 		</div>
 
-		<TagList stories={allStories} />
+
+		<section class="tags-section">
+			<h2>Browse by Topic</h2>
+			<TagList stories={allStories} />
+		</section>
+		
 	</main>	
 
 	<style>

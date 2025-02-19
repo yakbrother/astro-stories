@@ -67,6 +67,8 @@ const { title, description, pubDate, tags, updatedDate, ogImage, breadcrumbs, pr
 		<main class="stack">
 			<slot />
 		</main>
+		</article>
+
 		<section class="post-nav-section">
 			<nav class="post-nav">
 				{prevPost && (
@@ -81,7 +83,6 @@ const { title, description, pubDate, tags, updatedDate, ogImage, breadcrumbs, pr
 				)}
 			</nav>
 		</section>
-	</article>
 </BaseLayout>
 
 <style>

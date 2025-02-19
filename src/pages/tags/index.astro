@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import TagLink from '@components/TagLink.astro';
+import TagList from '@components/TagList.astro';
 
 const stories = await getCollection('stories');
 const tags = [...new Set(stories.flatMap(story => story.data.tags))].sort();
@@ -27,14 +28,7 @@ const tagCount = tags.length;
             <span>Browse stories by topic</span>
         </header>
         <div class="main-content">
-            <section class="tags-grid">
-                {tags.map(tag => (
-                    <div class="tag-item">
-                        <TagLink tag={tag} size="md" />
-                        <span class="count">{tagCounts[tag]} {tagCounts[tag] === 1 ? 'story' : 'stories'}</span>
-                    </div>
-                ))}
-            </section>
+        <TagList>
         </div>
 
     </article>

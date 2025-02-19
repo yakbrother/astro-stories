@@ -1,11 +1,15 @@
 ---
+import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-    stories: CollectionEntry<'stories'>[];
+    stories?: CollectionEntry<'stories'>[];
 }
 
-const { stories } = Astro.props;
+let { stories } = Astro.props;
+if (!stories) {
+    stories = await getCollection('stories');
+}
 
 // Get all unique tags with their counts
 const tagCounts = stories.reduce((acc, story) => {
@@ -22,17 +26,15 @@ const sortedTags = Object.entries(tagCounts)
     );
 ---
 
-<section class="tags-section">
-    <h2>Browse by Topic</h2>
+
     <div class="tags-grid">
-        {sortedTags.map(([tag, count]) => (
-            <a href={`/tags/${tag}/`} class="tag-link">
-                <span class="tag-name">{tag}</span>
-                <span class="tag-count">{count}</span>
-            </a>
-        ))}
+            {sortedTags.map(([tag, count]) => (
+                <a href={`/tags/${tag}/`} class="tag-link">
+                    <span class="tag-name">{tag}</span>
+                    <span class="tag-count">{count}</span>
+                </a>
+            ))}
     </div>
-</section>
 
 <style>
     .tags-grid {

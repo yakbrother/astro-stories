@@ -20,19 +20,19 @@ const { title, subtitle, description, breadcrumbs = [] } = Astro.props;
 <BaseLayout title={title} breadcrumbs={breadcrumbs} />
 
 
-
+<article>
 		<header>
 			<h2>{title}</h2>
 			{subtitle && (<span>{subtitle}</span>)}
 		</header>
 		
-		<section class="stack">
+		<section class="article | stack">
 			<slot />
 		</section>
-
+</article>
 		
 	<style>
-		main.stack {
+		section.stack {
 			padding-top: 0;
 		}
 	</style>
