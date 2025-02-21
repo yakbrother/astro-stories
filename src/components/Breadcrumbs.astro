@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { segments } = Astro.props;
-const truncate = (input: string) => input.length > 35 ? `${input.substring(0, 5)}...` : input;
+const truncate = (input: string) => input.length > 80 ? `${input.substring(0, 5)}...` : input;
 ---
 
 {segments && segments.length > 0 && (

@@ -17,23 +17,15 @@ interface Props {
 const { title, subtitle, description, breadcrumbs = [] } = Astro.props;
 ---
 
-<BaseLayout title={title} breadcrumbs={breadcrumbs} />
-
-
-<article>
+<BaseLayout title={title} breadcrumbs={breadcrumbs}>
+	<article>
 		<header>
 			<h2>{title}</h2>
 			{subtitle && (<span>{subtitle}</span>)}
 		</header>
 		
-		<section class="article | stack">
+		<content class="stack">
 			<slot />
-		</section>
-</article>
-		
-	<style>
-		section.stack {
-			padding-top: 0;
-		}
-	</style>
+		</content>
+	</article>
 </BaseLayout>
