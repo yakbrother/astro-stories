@@ -1,4 +1,4 @@
-	---
+---
 	import BaseLayout from '@layouts/BaseLayout.astro';
 	import StoryCard from '@components/StoryCard.astro';
 	import Pagination from '@components/Pagination.astro';
@@ -41,13 +41,13 @@
 					<StoryCard story={post} />
 				))}
 			</section>
+		</article>
 
-			<Pagination
+		<Pagination
 				currentPage={currentPage}
 				totalPages={totalPages}
 				baseUrl="/stories/page/"
 			/>
-		</article>
 
 
 	</BaseLayout>

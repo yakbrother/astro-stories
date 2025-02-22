@@ -7,35 +7,37 @@ interface Props {
 }
 
 const { segments } = Astro.props;
-const truncate = (input: string) => input.length > 80 ? `${input.substring(0, 5)}...` : input;
+const truncate = (input: string) => input.length > 60 ? `${input.substring(0, 5)}...` : input;
 ---
 
 {segments && segments.length > 0 && (
-<nav aria-label="Breadcrumb" class="breadcrumbs">
+<section aria-label="Breadcrumb" class="breadcrumbs">
     <ol>
         <li>
             <a href="/">Home</a>
         </li>
         {segments.map((segment, index) => (
             <li>
-                {segment.href ? (
-                    <a href={segment.href}>{segment.text}</a>
-                ) : (
-                    <span aria-current="page">
-                        {truncate(segment.text)}
-                    </span>
+                {segment.text !== "home" && (
+                    segment.href ? (
+                        <a href={segment.href}>{segment.text}</a>
+                    ) : (
+                        <span aria-current="page">
+                            {truncate(segment.text)}
+                        </span>
+                    )
                 )}
             </li>
         ))}
     </ol>
-</nav>
+</section>
 )}
 
 <style>
     .breadcrumbs {
         background: var(--color-background-muted);
-        padding-bottom: var(--s-0);
-        padding-top: var(--s-0);
+        padding-bottom: var(--s-1);
+        padding-top: var(--s-1);
         padding-right: var(--s-1);
         padding-left: var(--s-1);
         font-size: var(--s--1);
@@ -69,7 +71,8 @@ const truncate = (input: string) => input.length > 80 ? `${input.substring(0, 5)
 
     .breadcrumbs a {
         color: var(--color-text-muted);
-        text-decoration: none;
+        text-decoration: underline;
+        text-decoration-color: var(--color-accent);
     }
 
     .breadcrumbs a:hover {

@@ -24,6 +24,9 @@
                       --color-light: hsl(38, 82%, 96%);
                       --color-mid: #808080;
                       --color-accent: #FF451C;
+                      --max-width: 900px;
+                      --col-width: 60%;
+                      --threshold: calc(var(--max-width) - 100px);
                       --ratio: 1.5;
                       --s-5: clamp(0.33rem, 0.39rem + -0.29vw, 0.18rem);
                       --s-4: clamp(0.41rem, 0.47rem + -0.31vw, 0.25rem);
@@ -58,7 +61,6 @@
                       display: block;
                       margin-left: auto;
                       margin-right: auto;
-                      max-width: 35rem;
                     }
 
                     article {
@@ -129,9 +131,6 @@
                       color: var(--color-accent);
                     }
                     article {
-                      --max-width: 900px;
-                      --col-width: 60%;
-                      --threshold: calc(var(--max-width) - 100px);
                       max-width: var(--max-width);
                       margin: auto;
                       padding: var(--s1) var(--s1) 4rem;
@@ -161,7 +160,7 @@
                       color: var(--color-darkish);
                     }
 
-                    article>:not(header) {
+                    article>content {
             margin: 0;
             max-width: 100%;
             min-width: var(--col-width);
