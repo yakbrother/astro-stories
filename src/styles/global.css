@@ -2,7 +2,6 @@
 :after,
 :before {
   box-sizing: border-box;
-  background-color: inherit;
   font-family: inherit;
   color: inherit;
   overflow-wrap: break-word;
@@ -75,6 +74,8 @@ body {
 footer,
 header,
 article,
+section,
+content,
 nav {
   display: block;
 }
@@ -154,6 +155,19 @@ h4 {
   font-size: var(--s1);
 }
 
+p.intro {
+  font-size: var(--s1);
+  font-weight: 400;
+  line-height: var(--line-height);
+  font-style: italic;
+  text-align: left;
+  padding: var(--s2);
+  width: 100%;
+  max-width: var(--max-width);
+  margin: auto;
+}
+
+main.index > section,
 article {
   --max-width: 900px;
   --col-width: 60%;
@@ -162,31 +176,31 @@ article {
   width: 100%;
   margin: auto;
   padding: var(--s1);
-  display: flex;
   gap: var(--s1);
 }
 
+main.index > section > header,
 article > header {
-  min-width: calc(100% - var(--col-width) - var(--gap));
+  min-width: calc(100% - var(--col-width) - var(--s1));
   max-width: 100%;
   width: calc((var(--threshold) - 100%) * 1000);
-  text-align: end;
-  font-size: min(2.5rem, 8vw);
-  float: left;
-  padding-bottom: var(--gap);
   font-family: var(--font-plain);
   text-transform: lowercase;
   color: var(--color-text-muted);
+  text-align: end;
+  float: left;
+  border-right: 5px solid var(--color-accent);
   padding-right: var(--s1);
-  font-weight: 700;
+  padding-bottom: var(--s1);
+  max-width: 100%;
+  width: calc((var(--threshold) - 100%) * 1000);
   hyphens: auto;
-  flex-shrink: 0;
-  border-left: 5px solid var(--color-accent);
 }
 
+main.index > section > header > h2,
 article > header > h2 {
   font-size: var(--s2);
-  font-color: var(--color-background);
+  color: var(--color-text);
   font-family: var(--font-plain);
   min-width: calc(100% - var(--col-width) - var(--gap));
   max-width: 100%;
@@ -204,10 +218,13 @@ article > header > span {
   color: var(--color-text-muted);
 }
 
+main.index > section > content,
 article > content {
   margin: 0;
-  flex-grow: 1;
-  max-width: var(--col-width);
+  max-width: 100%;
+  min-width: var(--col-width);
+  width: calc((var(--threshold) - 100%) * 1000);
+  margin-left: auto;
 }
 
 article > p + p {
@@ -277,7 +294,7 @@ a#back-to-top {
   opacity: 0;
   transition: 0.218s ease;
   z-index: 1;
-  background: inherit;
+  background: var(--color-background-muted);
   border: 1px solid var(--color-accent);
   text-decoration: none;
 }

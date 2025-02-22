@@ -11,18 +11,6 @@ const { story } = Astro.props;
 const { title, description, pubDate, tags } = story.data;
 ---
 
-
-<!-- <a href={`/stories/${story.id}/`} class="story-card">
-    <card>
-        <FormattedDate date={pubDate} />
-        <h4>{title}</h4>
-        <span class="description">{description}</span>
-    </card>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-    </svg>
-</a> -->
-
 <a class="story-card" href={`/stories/${story.id}/`}>
     <div class="grow">
         <h4>
@@ -36,8 +24,8 @@ const { title, description, pubDate, tags } = story.data;
 </a>
 
 <style>
-a.story-card {
-    display: flex; 
+a.story-card { 
+    display: flex;
     gap: var(--s2); 
     justify-content: space-between; 
     align-items: flex-start; 
@@ -45,6 +33,9 @@ a.story-card {
     text-decoration: none;
     padding: var(--s-1);
     border-radius: var(--s-4);
+    align-items: center;
+    gap: var(--s1);
+    border: 1px solid var(--color-background-muted);
 }
 
 a :global(time) {
@@ -63,7 +54,7 @@ a :global(time) {
 
 }
 
-.story-card:hover {
+a.story-card:hover {
     display: flex;
     align-items: center;
     gap: var(--s1);
