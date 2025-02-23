@@ -1,35 +1,40 @@
 ---
-	import BaseLayout from '@layouts/BaseLayout.astro';
-	import StoryCard from '@components/StoryCard.astro';
-	import Pagination from '@components/Pagination.astro';
-	import { getCollection } from 'astro:content';
-	import { SITE_TITLE, SITE_DESCRIPTION } from '../../profile';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import StoryCard from '@components/StoryCard.astro';
+import Pagination from '@components/Pagination.astro';
+import { getCollection } from 'astro:content';
+import { SITE_TITLE } from '../../profile';
 
-	// Get the current page from the URL parameter
-	const currentPage = parseInt(Astro.params.page || '1');
-	const postsPerPage = 10;
+export async function getStaticPaths() {
+  const postsPerPage = 10;
+  const posts = await getCollection('stories');
+  const totalPages = Math.ceil(posts.length / postsPerPage);
 
-	// Get all posts sorted by date
-	const posts = (await getCollection('stories'))
-		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  return Array.from({ length: totalPages }, (_, i) => {
+    const page = i + 1;
+    const startIndex = i * postsPerPage;
+    const endIndex = startIndex + postsPerPage;
 
-	// Calculate total pages
-	const totalPages = Math.ceil(posts.length / postsPerPage);
+    return {
+      params: { page: page.toString() },
+      props: {
+        posts: posts
+          .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+          .slice(startIndex, endIndex),
+        currentPage: page,
+        totalPages,
+      },
+    };
+  });
+}
 
-	// Get posts for current page
-	const startIndex = (currentPage - 1) * postsPerPage;
-	const endIndex = startIndex + postsPerPage;
-	const currentPosts = posts.slice(startIndex, endIndex);
-
-	// Redirect if page is out of bounds
-	if (currentPage < 1 || currentPage > totalPages) {
-		return Astro.redirect('/404');
-	}
+const { posts, currentPage, totalPages } = Astro.props;
 	---
 
-	<BaseLayout title={SITE_TITLE} breadcrumbs={[
-			{ text: 'Stories' }
-		]}>
+	<BaseLayout 
+  title={`Stories - Page ${currentPage}`}
+  breadcrumbs={[{ text: 'Stories' }]}
+>
 		<article>
 			<header>
 				<h2>All Stories</h2>
@@ -46,16 +51,16 @@
 			</style>
 
 			<section class="stories-grid">
-				{currentPosts.map((post) => (
-					<StoryCard story={post} />
-				))}
+        {posts.map((post) => (
+          <StoryCard story={post} />
+        ))}
 			</section>
 		</article>
 
 		<Pagination
 				currentPage={currentPage}
 				totalPages={totalPages}
-				baseUrl="/stories/page/"
+				baseUrl="/stories/"
 			/>
 
 
