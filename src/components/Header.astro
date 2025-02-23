@@ -1,29 +1,29 @@
 ---
-import { SITE_TITLE, AUTHOR, EMAIL, } from '../profile';
+import { SITE_TITLE, AUTHOR, EMAIL } from '../profile';
 ---
 
 <header><h1><a href="/">{SITE_TITLE}</a></h1></header>
 
 <nav>
-	<div class="sublogo">stories by {AUTHOR}</div>
-	<ul>
-	<li><a href="/about">about</a></li>
-	<li><a href="/stories/page/1">archive</a></li>
-	<li><a href="#">bluesky</a></li>
-	<li><a href={`mailto:${EMAIL}`}>email</a></li>
-	</ul>
+  <div class="sublogo">stories by {AUTHOR}</div>
+  <ul>
+    <li><a href="/about">about</a></li>
+    <li><a href="/stories/page/1">archive</a></li>
+    <li><a href="#">bluesky</a></li>
+    <li><a href={`mailto:${EMAIL}`}>email</a></li>
+  </ul>
 </nav>
 
 <style>
-	header > h1 {
-		padding: var(--s-1) 0;
-	}
-	nav {
-		padding: var(--s1);
-		text-transform: lowercase;
-	}
-	.sublogo {
-		font-style: italic;
-		color: var(--color-text-muted);
-	}
+  header > h1 {
+    padding: var(--s-1) 0;
+  }
+  nav {
+    padding: var(--s1);
+    text-transform: lowercase;
+  }
+  .sublogo {
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
 </style>

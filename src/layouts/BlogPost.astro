@@ -7,108 +7,119 @@ import { AUTHOR } from '../profile';
 import TagLink from '@components/TagLink.astro';
 
 export async function getStaticPaths() {
-    const posts = (await getCollection('stories'))
-		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-    const postCount = posts.length;
-    return posts.map((post, index) => ({
-        params: { id: post.id },
-        props: {
-            post,
-            prevPost: index + 1 !== postCount ? posts[index + 1] : null,
-            nextPost: index !== 0 ? posts[index - 1] : null
-        }
-    }));
+  const posts = (await getCollection('stories')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  const postCount = posts.length;
+  return posts.map((post, index) => ({
+    params: { id: post.id },
+    props: {
+      post,
+      prevPost: index + 1 !== postCount ? posts[index + 1] : null,
+      nextPost: index !== 0 ? posts[index - 1] : null,
+    },
+  }));
 }
 
 type Props = {
-	title: string;
-	description: string;
-	pubDate: Date;
-	tags: Array<string>;
-	updatedDate?: Date;
-	ogImage?: string;
-	breadcrumbs?: Array<{
-		text: string;
-		href?: string;
-	}>;
-	prevPost?: CollectionEntry<'stories'>;
-	nextPost?: CollectionEntry<'stories'>;
+  title: string;
+  description: string;
+  pubDate: Date;
+  tags: Array<string>;
+  updatedDate?: Date;
+  ogImage?: string;
+  breadcrumbs?: Array<{
+    text: string;
+    href?: string;
+  }>;
+  prevPost?: CollectionEntry<'stories'>;
+  nextPost?: CollectionEntry<'stories'>;
 };
 
-const { title, description, pubDate, tags, updatedDate, ogImage, breadcrumbs, prevPost, nextPost } = Astro.props;
-
+const {
+  title,
+  description,
+  pubDate,
+  tags,
+  updatedDate,
+  ogImage,
+  breadcrumbs,
+  prevPost,
+  nextPost,
+} = Astro.props;
 ---
 
-<BaseLayout title={title} breadcrumbs={[
-        { text: 'Stories', href: '/stories' },
-		{ text: title }
-    ]}>
-	<article>
-		<header>
-			<h2>{title}</h2>
-			<span>
-				<FormattedDate date={pubDate} />
-				{
-					updatedDate && (
-						<div class="last-updated-on">
-							Last updated on <FormattedDate date={updatedDate} />
-						</div>
-					)
-				}
-				<br/>by {AUTHOR}
-				<p>
-					{tags.map(tag => (
-						<TagLink tag={tag} size="sm" />
-					))}
-				</p>
-			</span>
+<BaseLayout
+  title={title}
+  breadcrumbs={[{ text: 'Stories', href: '/stories' }, { text: title }]}
+>
+  <article>
+    <header>
+      <h2>{title}</h2>
+      <span>
+        <FormattedDate date={pubDate} />
+        {
+          updatedDate && (
+            <div class="last-updated-on">
+              Last updated on <FormattedDate date={updatedDate} />
+            </div>
+          )
+        }
+        <br />by {AUTHOR}
+        <p>
+          {tags.map((tag) => <TagLink tag={tag} size="sm" />)}
+        </p>
+      </span>
+    </header>
+    <content class="stack">
+      <slot />
+    </content>
+  </article>
 
-		</header>
-		<content class="stack">
-			<slot />
-		</content>
-		</article>
-
-		<section class="post-nav-section">
-			<nav class="post-nav">
-				{prevPost && (
-					<a href={`/stories/${prevPost.id}/`} class="prev">
-						← {prevPost.data.title}
-					</a>
-				)}
-				{nextPost && (
-					<a href={`/stories/${nextPost.id}/`} class="next">
-						{nextPost.data.title} →
-					</a>
-				)}
-			</nav>
-		</section>
+  <section class="post-nav-section">
+    <nav class="post-nav">
+      {
+        prevPost && (
+          <a href={`/stories/${prevPost.id}/`} class="prev">
+            ← {prevPost.data.title}
+          </a>
+        )
+      }
+      {
+        nextPost && (
+          <a href={`/stories/${nextPost.id}/`} class="next">
+            {nextPost.data.title} →
+          </a>
+        )
+      }
+    </nav>
+  </section>
 </BaseLayout>
 
 <style>
-	.post-nav {
-		clear: both;
-		display: flex;
-		justify-content: space-between;
-		gap: var(--s1);
-		margin: auto;
-		margin-top: var(--s2);
-		padding-top: var(--s1);
-		border-top: 1px dashed var(--color-background-muted);
-	}
+  .post-nav {
+    clear: both;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s1);
+    margin: auto;
+    margin-top: var(--s2);
+    padding-top: var(--s1);
+    border-top: 1px dashed var(--color-background-muted);
+  }
 
-	.post-nav a {
-		flex: 1;
-		text-decoration: none;
-		color: var(--color-text);
-		transition: color 0.2s ease;
-	}
+  .post-nav a {
+    flex: 1;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: color 0.2s ease;
+  }
 
-	.post-nav a:hover {
-		color: var(--color-accent);
-	}
+  .post-nav a:hover {
+    color: var(--color-accent);
+  }
 
-	.post-nav .next {
-		text-align: right;
-	}
+  .post-nav .next {
+    text-align: right;
+  }
 </style>

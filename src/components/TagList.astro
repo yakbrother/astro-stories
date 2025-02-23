@@ -3,77 +3,81 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-    stories?: CollectionEntry<'stories'>[];
+  stories?: CollectionEntry<'stories'>[];
 }
 
 let { stories } = Astro.props;
 if (!stories) {
-    stories = await getCollection('stories');
+  stories = await getCollection('stories');
 }
 
 // Get all unique tags with their counts
-const tagCounts = stories.reduce((acc, story) => {
-    story.data.tags?.forEach(tag => {
-        acc[tag] = (acc[tag] || 0) + 1;
+const tagCounts = stories.reduce(
+  (acc, story) => {
+    story.data.tags?.forEach((tag) => {
+      acc[tag] = (acc[tag] || 0) + 1;
     });
     return acc;
-}, {} as Record<string, number>);
+  },
+  {} as Record<string, number>
+);
 
 // Sort tags by count (descending) and then alphabetically
-const sortedTags = Object.entries(tagCounts)
-    .sort(([tagA, countA], [tagB, countB]) => 
-        countB - countA || tagA.localeCompare(tagB)
-    );
+const sortedTags = Object.entries(tagCounts).sort(
+  ([tagA, countA], [tagB, countB]) =>
+    countB - countA || tagA.localeCompare(tagB)
+);
 ---
 
-
-    <div class="tags-grid">
-            {sortedTags.map(([tag, count]) => (
-                <a href={`/tags/${tag}/`} class="tag-link">
-                    <span class="tag-name">{tag}</span>
-                    <span class="tag-count">{count}</span>
-                </a>
-            ))}
-    </div>
+<div class="tags-grid">
+  {
+    sortedTags.map(([tag, count]) => (
+      <a href={`/tags/${tag}/`} class="tag-link">
+        <span class="tag-name">{tag}</span>
+        <span class="tag-count">{count}</span>
+      </a>
+    ))
+  }
+</div>
 
 <style>
-    .tags-grid {
-        margin: 0;
-        margin-left: auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
-        gap: var(--s0);
-        
-    }
+  .tags-grid {
+    margin: 0;
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s0);
+  }
 
-    .tag-link {
-        display: flex;
-        justify-content: space-between;
-        text-transform: lowercase;
-        align-items: center;
-        padding: var(--s-1) var(--s0);
-        text-decoration: none;
-        color: var(--color-text);
-        border: 1px solid var(--color-text-muted);
-        border-radius: var(--s-4);
-        transition: all 0.2s ease;
-    }
+  .tag-link {
+    display: flex;
+    justify-content: space-between;
+    text-transform: lowercase;
+    align-items: center;
+    padding: var(--s-1) var(--s0);
+    text-decoration: none;
+    color: var(--color-text);
+    border: 1px solid var(--color-text-muted);
+    border-radius: var(--s-4);
+    transition: all 0.2s ease;
+  }
 
-    .tag-link:hover {
-        background-color: var(--color-background-muted);
-        border-color: var(--color-accent);
-    }
+  .tag-link:hover {
+    background-color: var(--color-background-muted);
+    border-color: var(--color-accent);
+  }
 
-    .tag-count {
-        background-color: var(--color-background-muted);
-        color: var(--color-text-muted);
-        padding: 0.2em 0.6em;
-        border-radius: 999px;
-        font-size: var(--s-1);
-    }
+  .tag-count {
+    background-color: var(--color-background-muted);
+    color: var(--color-text-muted);
+    margin-left: var(--s0);
+    padding: 0.2em 0.6em;
+    border-radius: 999px;
+    font-size: var(--s-1);
+  }
 
-    .tag-link:hover .tag-count {
-        background-color: var(--color-accent);
-        color: var(--color-background);
-    }
+  .tag-link:hover .tag-count {
+    background-color: var(--color-accent);
+    color: var(--color-background);
+  }
 </style>

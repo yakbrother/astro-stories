@@ -11,8 +11,8 @@
 }
 
 :root {
-  --font-plain: iA Writer Quattro S, Helvetica Neue, Helvetica, Arial,
-    sans-serif;
+  --font-plain:
+    iA Writer Quattro S, Helvetica Neue, Helvetica, Arial, sans-serif;
   --font-special: Bygonest Rustic, Futura, serif;
   --font-mono: Menlo, Courier, Courier New, Andale Mono, monospace;
   --color-background: #fdf7ec;

@@ -1,8 +1,8 @@
 ---
-title: "Hello, World!"
-description: "Welcome to my first story"
-pubDate: "2024-02-03"
-tags: ["welcome", "first-post"]
+title: 'Hello, World!'
+description: 'Welcome to my first story'
+pubDate: '2024-02-03'
+tags: ['welcome', 'first-post']
 featured: true
 ---
 

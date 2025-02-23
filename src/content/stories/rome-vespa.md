@@ -1,8 +1,8 @@
 ---
-title: "How Not to Ride a Vespa in Rome"
-description: "A lesson in Italian traffic chaos and gelato physics"
-pubDate: "2025-02-03"
-tags: ["rome", "italy", "travel", "humor"]
+title: 'How Not to Ride a Vespa in Rome'
+description: 'A lesson in Italian traffic chaos and gelato physics'
+pubDate: '2025-02-03'
+tags: ['rome', 'italy', 'travel', 'humor']
 featured: false
 ---
 

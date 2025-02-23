@@ -1,8 +1,8 @@
 ---
-title: "The Day I Accidentally Joined Every Queue in London"
-description: "A cautionary tale about British politeness and the art of queuing"
-pubDate: "2025-02-01"
-tags: ["london", "uk", "culture", "humor"]
+title: 'The Day I Accidentally Joined Every Queue in London'
+description: 'A cautionary tale about British politeness and the art of queuing'
+pubDate: '2025-02-01'
+tags: ['london', 'uk', 'culture', 'humor']
 featured: false
 ---
 

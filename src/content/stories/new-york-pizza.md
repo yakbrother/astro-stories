@@ -1,8 +1,8 @@
 ---
-title: "The New York Pizza Conspiracy"
+title: 'The New York Pizza Conspiracy'
 description: "One tourist's descent into the underground pizza wars"
-pubDate: "2025-02-02"
-tags: ["new york", "usa", "food", "humor"]
+pubDate: '2025-02-02'
+tags: ['new york', 'usa', 'food', 'humor']
 featured: true
 ---
 

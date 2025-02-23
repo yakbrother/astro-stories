@@ -1,28 +1,28 @@
 @font-face {
-  font-family: "bygonest_rusticbold";
+  font-family: 'bygonest_rusticbold';
   src:
-    url("/fonts/bygonest_rustic_bold-webfont.woff2") format("woff2"),
-    url("/fonts/bygonest_rustic_bold-webfont.woff") format("woff");
+    url('/fonts/bygonest_rustic_bold-webfont.woff2') format('woff2'),
+    url('/fonts/bygonest_rustic_bold-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "ia-writer";
+  font-family: 'ia-writer';
   src:
-    url("/fonts/ia-writer-quattro-latin-400-normal-webfont.woff2")
-      format("woff2"),
-    url("/fonts/ia-writer-quattro-latin-400-normal-webfont.woff") format("woff");
+    url('/fonts/ia-writer-quattro-latin-400-normal-webfont.woff2')
+      format('woff2'),
+    url('/fonts/ia-writer-quattro-latin-400-normal-webfont.woff') format('woff');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "ia-writer-bold";
+  font-family: 'ia-writer-bold';
   src:
-    url("/fonts/ia-writer-quattro-latin-700-normal-webfont.woff2")
-      format("woff2"),
-    url("/fonts/ia-writer-quattro-latin-700-normal-webfont.woff") format("woff");
+    url('/fonts/ia-writer-quattro-latin-700-normal-webfont.woff2')
+      format('woff2'),
+    url('/fonts/ia-writer-quattro-latin-700-normal-webfont.woff') format('woff');
   font-weight: 700;
   font-style: bold;
 }

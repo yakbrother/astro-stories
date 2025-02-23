@@ -1,8 +1,8 @@
 ---
-title: "The Bear Necessities: A Camping Food Fiasco"
-description: "How my gourmet camping menu attracted everything except compliments"
-pubDate: "2025-02-08"
-tags: ["camping", "humor", "food", "wildlife"]
+title: 'The Bear Necessities: A Camping Food Fiasco'
+description: 'How my gourmet camping menu attracted everything except compliments'
+pubDate: '2025-02-08'
+tags: ['camping', 'humor', 'food', 'wildlife']
 featured: false
 ---
 

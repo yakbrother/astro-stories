@@ -4,46 +4,39 @@ import { getCollection } from 'astro:content';
 import StoryCard from '@components/StoryCard.astro';
 
 export async function getStaticPaths() {
-    const stories = await getCollection('stories');
-    const tags = [...new Set(stories.flatMap(story => story.data.tags))];
-    
-    return tags.map(tag => ({
-        params: { tag },
-        props: { 
-            stories: stories
-                .filter(story => story.data.tags.includes(tag))
-                .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-        }
-    }));
+  const stories = await getCollection('stories');
+  const tags = [...new Set(stories.flatMap((story) => story.data.tags))];
+
+  return tags.map((tag) => ({
+    params: { tag },
+    props: {
+      stories: stories
+        .filter((story) => story.data.tags.includes(tag))
+        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+    },
+  }));
 }
 
 const { tag } = Astro.params;
 const { stories: taggedStories } = Astro.props;
 const storyCount = `${taggedStories.length} ${taggedStories.length === 1 ? 'story' : 'stories'}`;
-
 ---
 
-
-<PageLayout 
-    title={`Stories tagged "${tag}"`} 
-    subtitle={`${storyCount}`}
-    breadcrumbs={[
-        { text: 'Tags', href: '/tags' },
-        { text: tag }
-    ]}>
-    <section class="stories-grid">
-        {taggedStories.map(story => (
-            <StoryCard story={story} />
-        ))}
-    </section>
+<PageLayout
+  title={`Stories tagged "${tag}"`}
+  subtitle={`${storyCount}`}
+  breadcrumbs={[{ text: 'Tags', href: '/tags' }, { text: tag }]}
+>
+  <section class="stories-grid">
+    {taggedStories.map((story) => <StoryCard story={story} />)}
+  </section>
 </PageLayout>
 
 <style>
-
-    .stories-grid {
-        display: grid;
-        gap: 2rem;
-        grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
-        margin-bottom: 4rem;
-    }
+  .stories-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
+    margin-bottom: 4rem;
+  }
 </style>

@@ -4,19 +4,30 @@ import TagList from '@components/TagList.astro';
 ---
 
 <PageLayout
-	title="404"
-	description="No Story Found"
-	breadcrumbs={[
-		{ text: 'Home', href: '/' },
-		{ text: '404' }
-	]}
+  title="404"
+  description="No Story Found"
+  breadcrumbs={[{ text: '404' }]}
 >
+  <p>
+    Curious thing about lost pages — they're never where you expect them to be,
+    yet always exactly where they ought to be, which is somewhere else entirely.
+    That's the philosophy of error messages, as near as I can figure.
+  </p>
+  <p>
+    You might try checking your spelling. I knew a fellow once who spent three
+    years looking for New Orleans because he kept asking for "New Or-leens."
+    When he finally got the pronunciation right, turned out he'd been within
+    spitting distance the whole time.
+  </p>
 
-<p>Curious thing about lost pages — they're never where you expect them to be, yet always exactly where they ought to be, which is somewhere else entirely. That's the philosophy of error messages, as near as I can figure.</p>
-<p>You might try checking your spelling. I knew a fellow once who spent three years looking for New Orleans because he kept asking for "New Or-leens." When he finally got the pronunciation right, turned out he'd been within spitting distance the whole time.</p>
+  <p>
+    But I'm not sure that's the case with this one. It seems to be stuck
+    somewhere in the middle of a forest of tags and links.
+  </p>
 
-<p>But I'm not sure that's the case with this one. It seems to be stuck somewhere in the middle of a forest of tags and links.</p>
+  <hr />
 
-<TagList />
+  <p></p>
 
+  <TagList />
 </PageLayout>

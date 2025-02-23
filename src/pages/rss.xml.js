@@ -1,9 +1,9 @@
-import rss from "@astrojs/rss";
-import { getCollection } from "astro:content";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../profile";
+import rss from '@astrojs/rss';
+import { getCollection } from 'astro:content';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../profile';
 
 export async function GET(context) {
-  const posts = await getCollection("stories");
+  const posts = await getCollection('stories');
   return rss({
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,

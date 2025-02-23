@@ -1,87 +1,87 @@
 ---
 interface Props {
-    segments: Array<{
-        text: string;
-        href?: string;
-    }>;
+  segments: Array<{
+    text: string;
+    href?: string;
+  }>;
 }
 
 const { segments } = Astro.props;
-const truncate = (input: string) => input.length > 60 ? `${input.substring(0, 5)}...` : input;
+const truncate = (input: string) =>
+  input.length > 60 ? `${input.substring(0, 5)}...` : input;
 ---
 
-{segments && segments.length > 0 && (
-<section aria-label="Breadcrumb" class="breadcrumbs">
-    <ol>
+{
+  segments && segments.length > 0 && (
+    <section aria-label="Breadcrumb" class="breadcrumbs">
+      <ol>
         <li>
-            <a href="/">Home</a>
+          <a href="/">Home</a>
         </li>
         {segments.map((segment, index) => (
-            <li>
-                {segment.text !== "home" && (
-                    segment.href ? (
-                        <a href={segment.href}>{segment.text}</a>
-                    ) : (
-                        <span aria-current="page">
-                            {truncate(segment.text)}
-                        </span>
-                    )
-                )}
-            </li>
+          <li>
+            {segment.text !== 'home' &&
+              (segment.href ? (
+                <a href={segment.href}>{segment.text}</a>
+              ) : (
+                <span aria-current="page">{truncate(segment.text)}</span>
+              ))}
+          </li>
         ))}
-    </ol>
-</section>
-)}
+      </ol>
+    </section>
+  )
+}
 
 <style>
-    .breadcrumbs {
-        background: var(--color-background-muted);
-        padding-bottom: var(--s-1);
-        padding-top: var(--s-1);
-        padding-right: var(--s-1);
-        padding-left: var(--s-1);
-        font-size: var(--s--1);
-        border-radius: 1em;
-        text-transform: lowercase;
-        margin: auto;
-        margin-bottom: var(--s1);
-        word-wrap: nowrap;
-        width: 100%;
-        max-width: var(--max-width);
-    }
-    
-    .breadcrumbs ol {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-    }
+  .breadcrumbs {
+    background: var(--color-background-muted);
+    padding-bottom: var(--s-1);
+    padding-top: var(--s-1);
+    padding-right: var(--s-1);
+    padding-left: var(--s-1);
+    font-size: var(--s--1);
+    border-radius: 1em;
+    text-transform: lowercase;
+    margin: auto;
+    margin-bottom: var(--s1);
+    word-wrap: nowrap;
+    width: 100%;
+    max-width: var(--max-width);
+  }
 
-    .breadcrumbs li {
-        display: flex;
-        align-items: center;
-    }
+  .breadcrumbs ol {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 
-    .breadcrumbs li:not(:last-child)::after {
-        content: "/";
-        margin-left: 0.5rem;
-        color: var(--color-text-muted);
-    }
+  .breadcrumbs li {
+    display: flex;
+    align-items: center;
+  }
 
-    .breadcrumbs a {
-        color: var(--color-text-muted);
-        text-decoration: underline;
-        text-decoration-color: var(--color-accent);
-    }
+  .breadcrumbs li:not(:last-child)::after {
+    content: '/';
+    margin-left: 0.5rem;
+    color: var(--color-text-muted);
+  }
 
-    .breadcrumbs a:hover {
-        color: var(--color-accent);
-        text-decoration: underline;
-    }
+  .breadcrumbs a {
+    color: var(--color-text-muted);
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+  }
 
-    .breadcrumbs [aria-current="page"] {
-        color: var(--color-text);
-        font-weight: 500;
-    }
+  .breadcrumbs a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .breadcrumbs [aria-current='page'] {
+    color: var(--color-text);
+    font-weight: 500;
+  }
 </style>

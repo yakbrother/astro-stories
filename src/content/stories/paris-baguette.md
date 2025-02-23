@@ -1,8 +1,8 @@
 ---
-title: "The Great Parisian Baguette Incident"
-description: "How I accidentally started a bread-based revolution"
-pubDate: "2025-01-28"
-tags: ["paris", "france", "food", "humor"]
+title: 'The Great Parisian Baguette Incident'
+description: 'How I accidentally started a bread-based revolution'
+pubDate: '2025-01-28'
+tags: ['paris', 'france', 'food', 'humor']
 featured: true
 ---
 

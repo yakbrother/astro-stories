@@ -7,79 +7,80 @@ import TagList from '@components/TagList.astro';
 
 const allStories = await getCollection('stories');
 const recentStories = allStories
-	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-	.slice(0, 6);
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 6);
 
 // Get all unique tags with their counts
-const tagCounts = allStories.reduce((acc, story) => {
-	story.data.tags?.forEach(tag => {
-		acc[tag] = (acc[tag] || 0) + 1;
-	});
-	return acc;
-}, {} as Record<string, number>);
+const tagCounts = allStories.reduce(
+  (acc, story) => {
+    story.data.tags?.forEach((tag) => {
+      acc[tag] = (acc[tag] || 0) + 1;
+    });
+    return acc;
+  },
+  {} as Record<string, number>
+);
 
 // Sort tags by count (descending) and then alphabetically
-const sortedTags = Object.entries(tagCounts)
-	.sort(([tagA, countA], [tagB, countB]) => 
-		countB - countA || tagA.localeCompare(tagB)
-	);
+const sortedTags = Object.entries(tagCounts).sort(
+  ([tagA, countA], [tagB, countB]) =>
+    countB - countA || tagA.localeCompare(tagB)
+);
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-	<main class="stack index">
+  <main class="stack index">
+    <p class="intro">
+      Hi, I'm Anonymous. This is my digital garden, a place where I write about
+      what I learn, share my thoughts, and explore new things. Some of the names
+      may not be true, and my memory is a bit hazy, but I guess these stories
+      are about 87% true. Or it must be, since it was all written by ChatGPT.
+    </p>
 
-		<p class="intro">Hi, I'm Anonymous. This is my digital garden, a place where I write about what I learn, share my thoughts, and explore new things.
-		Some of the names may not be true, and my memory is a bit hazy, but I guess these stories are about 87% true.
-		</p>
-		
-		<section class="stories-section">
-			<header>
-				<h2>Recent Stories</h2>
-			</header>
-			<content>
-			<div class="stories-grid">
-				{recentStories.map((story) => (
-					<StoryCard story={story} />
-				))}
-			</div>
-			<div class="archive-link">
-				<a href="/stories/page/1">View All Stories →</a>
-			</div>
-			</content>
-		</section>
+    <section class="stories-section">
+      <header>
+        <h2>Recent Stories</h2>
+      </header>
+      <content>
+        <div class="stories-grid">
+          {recentStories.map((story) => <StoryCard story={story} />)}
+        </div>
+        <div class="archive-link">
+          <a href="/stories/page/1">View All Stories →</a>
+        </div>
+      </content>
+    </section>
 
+    <section class="tags-section">
+      <header>
+        <h2>Browse by Topic</h2>
+      </header>
+      <content>
+        <TagList stories={allStories} />
+      </content>
+    </section>
+  </main>
 
-		<section class="tags-section">
-			<header>
-				<h2>Browse by Topic</h2>
-			</header>
-			<content>
-				<TagList stories={allStories} />
-			</content>
-		</section>
-		
-	</main>	
+  <style>
+    div.archive-link {
+      max-width: var(--min-width);
+      margin: var(--s2) auto;
+      padding: 0 var(--s1);
+      text-align: right;
+    }
 
-	<style>
-		div.archive-link {
-			max-width: var(--min-width);
-			margin: var(--s2) auto;
-			padding: 0 var(--s1);
-			text-align: right;
-		}
-		
-		.archive-link a {
-			padding: 0.5rem 1rem;
-			text-decoration: none;
-			color: inherit;
-			border: 1px solid var(--color-accent);
-			border-radius: 0.05em;
-			transition: all 0.2s;
-		}
+    .archive-link a {
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid var(--color-accent);
+      border-radius: 0.05em;
+      transition: all 0.2s;
+    }
 
-		.archive-link a:hover {
-			background: var(--color-accent);
-			color: var(--color-text);
-		}
-	</style>
+    .archive-link a:hover {
+      background: var(--color-accent);
+      color: var(--color-text);
+    }
+  </style>
 </BaseLayout>

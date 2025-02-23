@@ -1,8 +1,8 @@
 ---
 title: "The Social Media Hitchhiker: An Influencer's Journey"
-description: "How my attempt to become a hitchhiking influencer backfired spectacularly"
-pubDate: "2025-02-05"
-tags: ["hitchhiking", "humor", "social-media", "travel"]
+description: 'How my attempt to become a hitchhiking influencer backfired spectacularly'
+pubDate: '2025-02-05'
+tags: ['hitchhiking', 'humor', 'social-media', 'travel']
 featured: false
 ---
 

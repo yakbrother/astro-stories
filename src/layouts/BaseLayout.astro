@@ -1,12 +1,12 @@
 ---
 const { title, description, image, breadcrumbs } = Astro.props;
-import BaseHead from "@components/BaseHead.astro";
-import Breadcrumbs from "@components/Breadcrumbs.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
+import BaseHead from '@components/BaseHead.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} image={image} />
@@ -14,11 +14,11 @@ import Footer from "@components/Footer.astro";
   <body class="stack">
     <Header />
     <section class="breadcrumbs-section">
-        <Breadcrumbs segments={breadcrumbs} />
+      <Breadcrumbs segments={breadcrumbs} />
     </section>
-      <main class="stack">
-        <slot />
-      </main>
+    <main class="stack">
+      <slot />
+    </main>
     <a class="button" href="#" id="back-to-top">↑ Back to top</a>
     <Footer />
     <style>

@@ -4,7 +4,7 @@ import FormattedDate from './FormattedDate.astro';
 import TagLink from './TagLink.astro';
 
 interface Props {
-    story: CollectionEntry<'stories'>;
+  story: CollectionEntry<'stories'>;
 }
 
 const { story } = Astro.props;
@@ -12,23 +12,23 @@ const { title, description, pubDate, tags } = story.data;
 ---
 
 <a class="story-card" href={`/stories/${story.id}/`}>
-    <div class="grow">
-        <h4>
-            {title}
-        </h4>
-        
-        <FormattedDate date={pubDate} />
-        
-        {description && <div class="description">{description}</div>}
-    </div>
+  <div class="grow">
+    <h4>
+      {title}
+    </h4>
+
+    <FormattedDate date={pubDate} />
+
+    {description && <div class="description">{description}</div>}
+  </div>
 </a>
 
 <style>
-a.story-card { 
+  a.story-card {
     display: flex;
-    gap: var(--s2); 
-    justify-content: space-between; 
-    align-items: flex-start; 
+    gap: var(--s2);
+    justify-content: space-between;
+    align-items: flex-start;
     margin-block-end: var(--s2);
     text-decoration: none;
     padding: var(--s-1);
@@ -36,62 +36,58 @@ a.story-card {
     align-items: center;
     gap: var(--s1);
     border: 1px solid var(--color-background-muted);
-}
+  }
 
-a :global(time) {
+  a :global(time) {
     text-decoration: none;
     color: var(--color-text-muted);
     font-size: var(--s-1);
-}
+  }
 
-.story-card:hover h4 {
+  .story-card:hover h4 {
     color: var(--color-accent);
-}
+  }
 
-.story-card:hover .arrow {
-    opacity: 1; 
+  .story-card:hover .arrow {
+    opacity: 1;
     display: inline-block;
+  }
 
-}
-
-a.story-card:hover {
+  a.story-card:hover {
     display: flex;
     align-items: center;
     gap: var(--s1);
     color: var(--color-text);
     background-color: var(--color-background-muted);
     border: 1px solid var(--color-accent);
-}
+  }
 
-.story-card:hover :global(time),
-.story-card:hover .description {
+  .story-card:hover :global(time),
+  .story-card:hover .description {
     color: var(--color-text);
-}
+  }
 
-
-.story-card .description {
+  .story-card .description {
     text-decoration: none;
     color: var(--color-text-muted);
     font-style: italic;
     font-size: var(--s-1);
-}
+  }
 
-.story-card svg {
-    position: absolute; 
-    right: 0.75rem; 
-    top: 50%; 
+  .story-card svg {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
     transform: translateY(-50%);
-    color: var(--color-text-muted); 
+    color: var(--color-text-muted);
     transition: transform 0.3s ease;
-}
+  }
 
-
-.story-card card {
-    display: flex; 
-    flex-direction: column; 
-    flex: 1 1 0%; 
+  .story-card card {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0%;
     overflow: hidden;
     gap: 0.25rem;
-}
-
+  }
 </style>

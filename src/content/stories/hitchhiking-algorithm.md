@@ -1,8 +1,8 @@
 ---
-title: "The Great Hitchhiking Algorithm Disaster"
-description: "When a software engineer tries to optimize hitchhiking using machine learning"
-pubDate: "2025-02-09"
-tags: ["hitchhiking", "humor", "tech", "travel"]
+title: 'The Great Hitchhiking Algorithm Disaster'
+description: 'When a software engineer tries to optimize hitchhiking using machine learning'
+pubDate: '2025-02-09'
+tags: ['hitchhiking', 'humor', 'tech', 'travel']
 featured: false
 ---
 

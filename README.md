@@ -10,7 +10,7 @@
 - [ ] Add some screenshots
 - [ ] Add a CMS
 - [ ] Add instructions for personalizing
-- [ ] Add other themes?
+- [ ] Add other theme colors?
 - [ ] Add RSS/Atom support
 
 ---

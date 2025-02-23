@@ -1,8 +1,8 @@
 ---
 title: "That Time I Got Lost in Tokyo's Vending Machine Forest"
 description: "A tale of survival among Japan's most peculiar convenience stores"
-pubDate: "2025-01-15"
-tags: ["tokyo", "japan", "travel", "humor"]
+pubDate: '2025-01-15'
+tags: ['tokyo', 'japan', 'travel', 'humor']
 featured: false
 ---
 

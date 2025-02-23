@@ -3,29 +3,27 @@ import { SITE_TITLE } from 'profile';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
-	title: string;
-	subtitle?: string;
-	description?: string;
-	breadcrumbs?: Array<{
-		text: string;
-		href?: string;
-	}>;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  breadcrumbs?: Array<{
+    text: string;
+    href?: string;
+  }>;
 }
-
-
 
 const { title, subtitle, description, breadcrumbs = [] } = Astro.props;
 ---
 
 <BaseLayout title={title} breadcrumbs={breadcrumbs}>
-	<article>
-		<header>
-			<h2>{title}</h2>
-			{subtitle && (<span>{subtitle}</span>)}
-		</header>
-		
-		<content class="stack">
-			<slot />
-		</content>
-	</article>
+  <article>
+    <header>
+      <h2>{title}</h2>
+      {subtitle && <span>{subtitle}</span>}
+    </header>
+
+    <content class="stack">
+      <slot />
+    </content>
+  </article>
 </BaseLayout>

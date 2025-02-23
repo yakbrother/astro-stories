@@ -4,49 +4,50 @@ import { getCollection } from 'astro:content';
 import TagList from '@components/TagList.astro';
 
 const stories = await getCollection('stories');
-const tags = [...new Set(stories.flatMap(story => story.data.tags))].sort();
+const tags = [...new Set(stories.flatMap((story) => story.data.tags))].sort();
 
 // Count stories per tag
-const tagCounts = tags.reduce((acc, tag) => {
-    acc[tag] = stories.filter(story => story.data.tags.includes(tag)).length;
+const tagCounts = tags.reduce(
+  (acc, tag) => {
+    acc[tag] = stories.filter((story) => story.data.tags.includes(tag)).length;
     return acc;
-}, {} as Record<string, number>);
+  },
+  {} as Record<string, number>
+);
 
 const tagCount = tags.length;
 ---
 
-<BaseLayout 
-    title="Tags" 
-    subtitle={`${tagCount} tags`}
-    breadcrumbs={[
-        { text: 'Tags' }
-    ]}>
-    <article>
-        <header>
-            <h2>Browse by Tags</h2>
-            <span>Browse stories by topic</span>
-        </header>
-        <content>
-            <TagList />
-        </content>
-    </article>
+<BaseLayout
+  title="Tags"
+  subtitle={`${tagCount} tags`}
+  breadcrumbs={[{ text: 'Tags' }]}
+>
+  <article>
+    <header>
+      <h2>Browse by Tags</h2>
+      <span>Browse stories by topic</span>
+    </header>
+    <content>
+      <TagList />
+    </content>
+  </article>
 
-
-<style>
+  <style>
     .tags-grid {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
-        gap: var(--s0);
-        margin-bottom: 4rem;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+      gap: var(--s0);
+      margin-bottom: 4rem;
     }
     .tag-item {
-        display: inline-block;
-        align-items: center;
+      display: inline-block;
+      align-items: center;
     }
     .count {
-        color: var(--color-text-muted);
-        font-size: var(--s-1);
+      color: var(--color-text-muted);
+      font-size: var(--s-1);
     }
-</style>
+  </style>
 </BaseLayout>

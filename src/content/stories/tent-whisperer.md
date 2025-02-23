@@ -1,8 +1,8 @@
 ---
-title: "The Tent Whisperer: My Failed Career as a Camping Guru"
-description: "How I convinced everyone I was a camping expert until a tent tried to eat me"
-pubDate: "2025-02-10"
-tags: ["camping", "humor", "outdoors", "misadventure"]
+title: 'The Tent Whisperer: My Failed Career as a Camping Guru'
+description: 'How I convinced everyone I was a camping expert until a tent tried to eat me'
+pubDate: '2025-02-10'
+tags: ['camping', 'humor', 'outdoors', 'misadventure']
 featured: false
 ---
 

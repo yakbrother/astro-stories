@@ -1,8 +1,8 @@
 ---
-title: "When Smart Camping Gets Too Smart"
+title: 'When Smart Camping Gets Too Smart'
 description: "My disastrous attempt to create the world's first AI-powered campsite"
-pubDate: "2025-02-06"
-tags: ["camping", "humor", "tech", "gadgets"]
+pubDate: '2025-02-06'
+tags: ['camping', 'humor', 'tech', 'gadgets']
 featured: false
 ---
 

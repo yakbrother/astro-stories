@@ -1,8 +1,8 @@
 ---
 title: "Lost in Translation: The Hitchhiker's Guide to Misunderstandings"
-description: "When a language app leads to accidentally joining a traveling circus"
-pubDate: "2025-02-07"
-tags: ["hitchhiking", "humor", "travel", "language"]
+description: 'When a language app leads to accidentally joining a traveling circus'
+pubDate: '2025-02-07'
+tags: ['hitchhiking', 'humor', 'travel', 'language']
 featured: false
 ---
 
