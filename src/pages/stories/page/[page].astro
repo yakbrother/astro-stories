@@ -1,0 +1,69 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import StoryCard from '@components/StoryCard.astro';
+import Pagination from '@components/Pagination.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const stories = await getCollection('stories');
+  const sortedStories = stories.sort((a, b) => 
+    b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+
+  const postsPerPage = 10;
+  const totalPages = Math.ceil(sortedStories.length / postsPerPage);
+
+  return Array.from({ length: totalPages }, (_, i) => {
+    const page = i + 1;
+    const startIndex = i * postsPerPage;
+    const endIndex = Math.min(startIndex + postsPerPage, sortedStories.length);
+
+    return {
+      params: { page: page.toString() },
+      props: {
+        page,
+        totalPages,
+        stories: sortedStories.slice(startIndex, endIndex),
+        total: sortedStories.length,
+      },
+    };
+  });
+}
+
+interface Props {
+  page: number;
+  totalPages: number;
+  stories: CollectionEntry<'stories'>[];
+  total: number;
+}
+
+const { page, totalPages, stories, total } = Astro.props;
+const subtitle = `Page ${page} of ${totalPages} · ${total} stories total`;
+---
+
+<PageLayout 
+  title="Story Archive"
+  subtitle={subtitle}
+  breadcrumbs={[{ text: 'Stories' }]}>
+  <section class="stories-grid">
+    {stories.map((story: CollectionEntry<'stories'>) => (
+      <StoryCard story={story} />
+    ))}
+  </section>
+
+  <Pagination
+    currentPage={page}
+    totalPages={totalPages}
+    baseUrl="/stories/page"
+  />
+</PageLayout>
+
+<style>
+  .stories-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
+    margin-bottom: 4rem;
+  }
+</style>

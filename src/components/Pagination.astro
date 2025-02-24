@@ -34,7 +34,7 @@ if (showEllipsis) {
   {
     currentPage > 1 && (
       <a
-        href={`${baseUrl}${currentPage - 1}`}
+        href={`${baseUrl}/${currentPage - 1}`}
         class="pagination-link prev"
         aria-label="Previous page"
       >
@@ -52,7 +52,7 @@ if (showEllipsis) {
 
         return (
           <a
-            href={`${baseUrl}${page}`}
+            href={`${baseUrl}/${page}`}
             class:list={['pagination-link', { active: page === currentPage }]}
             aria-current={page === currentPage ? 'page' : undefined}
             aria-label={`Page ${page}`}
@@ -67,7 +67,7 @@ if (showEllipsis) {
   {
     currentPage < totalPages && (
       <a
-        href={`${baseUrl}${currentPage + 1}`}
+        href={`${baseUrl}/${currentPage + 1}`}
         class="pagination-link next"
         aria-label="Next page"
       >

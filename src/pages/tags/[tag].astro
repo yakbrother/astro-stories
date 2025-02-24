@@ -1,6 +1,7 @@
 ---
 import PageLayout from '@layouts/PageLayout.astro';
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import StoryCard from '@components/StoryCard.astro';
 
 export async function getStaticPaths() {
@@ -18,7 +19,7 @@ export async function getStaticPaths() {
 }
 
 const { tag } = Astro.params;
-const { stories: taggedStories } = Astro.props;
+const { stories: taggedStories }: { stories: CollectionEntry<'stories'>[] } = Astro.props;
 const storyCount = `${taggedStories.length} ${taggedStories.length === 1 ? 'story' : 'stories'}`;
 ---
 
